@@ -72,6 +72,21 @@ p{margin:0 0 10px}
 .ljump button{flex:none;border:1px solid rgba(200,232,156,.35);background:rgba(255,255,255,.06);color:#C8E89C;border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:600}
 .lart{background:var(--mint);padding:22px 18px;min-height:150px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
 .lbody{padding:20px 20px 6px}
+.lart.line{padding:16px 10px 10px;cursor:pointer;position:relative}
+.lart.line::after{content:"↻";position:absolute;right:12px;bottom:8px;font-size:13px;color:#7D8A6E;opacity:0;transition:opacity .3s 2.8s}
+.lart.line.on::after{opacity:.7}
+.lsvg{width:100%;max-width:440px;height:auto;display:block;overflow:visible;stroke:#3F7A14;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lsvg .ld{stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0}
+.lart.on .ld{animation:ldraw .9s cubic-bezier(.45,.05,.3,1) var(--d,0s) forwards}
+@keyframes ldraw{0%{opacity:1;stroke-dashoffset:1}100%{opacity:1;stroke-dashoffset:0}}
+.lsvg .ldf{stroke:none;opacity:0}
+.lart.on .ldf{animation:lfill .7s ease var(--d,0s) forwards}
+@keyframes lfill{from{opacity:0}to{opacity:var(--fo,.55)}}
+.lsvg .ldt{stroke:none;fill:#2E5A14;font-weight:700;font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;opacity:0}
+.lsvg .lden{fill:#7D8A6E;font-weight:500;font-style:italic;font-size:10px}
+.lart.on .ldt{animation:ltext .6s ease var(--d,0s) forwards}
+@keyframes ltext{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.lart.on .ld,.lart.on .ldf,.lart.on .ldt{animation-duration:.01s;animation-delay:0s!important}}
 .lbody .kicker{font-size:13px;font-weight:700;color:var(--pri3);letter-spacing:.02em}
 .tip{background:#FFF7E8;border-radius:14px;padding:12px 14px;margin:12px 0;font-size:15px}
 .tip b{color:var(--gold)}
@@ -1182,6 +1197,123 @@ function renderHome(){
   view.querySelectorAll('[data-recipe]').forEach(b=>b.onclick=()=>openRecipe(b.dataset.recipe));
 }
 
+/* ---------- 배우기 라인 드로잉 ---------- */
+const L=(t,a)=>`<${t} class="ld" pathLength="1" ${a}/>`;
+const F=(t,a)=>`<${t} class="ldf" ${a}/>`;
+const TX=(x,y,ko,en,sz)=>`<text class="ldt" x="${x}" y="${y}" text-anchor="middle" font-size="${sz||12}">${ko}${en?`<tspan x="${x}" dy="12" class="lden">${en}</tspan>`:''}</text>`;
+const at=(cx,top,s,inner)=>`<g transform="translate(${(cx-20*s).toFixed(1)} ${top}) scale(${s})" style="stroke-width:${(2/s).toFixed(2)}">${inner}</g>`;
+const lsvg=inner=>`<svg class="lsvg" viewBox="0 0 320 160" aria-hidden="true">${inner}</svg>`;
+const wheel=(cx,cy,r,col)=>F('circle',`cx="${cx}" cy="${cy}" r="${r}" fill="${col||'#C9E88A'}" opacity=".55"`)+L('circle',`cx="${cx}" cy="${cy}" r="${r}"`)+L('circle',`cx="${cx}" cy="${cy}" r="${(r*.78).toFixed(1)}"`)+L('path',`d="${[0,60,120].map(a=>{const c=Math.cos(a*Math.PI/180)*r*.78,s=Math.sin(a*Math.PI/180)*r*.78;return `M${(cx-c).toFixed(1)} ${(cy-s).toFixed(1)}L${(cx+c).toFixed(1)} ${(cy+s).toFixed(1)}`;}).join('')}"`);
+const cube=(x,y,s)=>L('rect',`x="${x}" y="${y}" width="${s}" height="${s}" rx="${(s*.18).toFixed(1)}"`)+L('path',`d="M${x+s*.22} ${y+s*.28}L${x+s*.7} ${y+s*.22}"`);
+const leaf=(x,y,rot,sc)=>`<g transform="translate(${x} ${y}) rotate(${rot}) scale(${sc||1})">${F('path','d="M0 0C-6 -3 -6 -12 0 -15C6 -12 6 -3 0 0Z" fill="#8CC63F" opacity=".5"')}${L('path','d="M0 0C-6 -3 -6 -12 0 -15C6 -12 6 -3 0 0Z"')}${L('path','d="M0 0V-13"')}</g>`;
+const I={
+ highball:liq=>(liq?F('path',`d="M8.55 22L10 56H30L31.45 22Z" fill="${liq}" opacity=".5"`)+L('path','d="M8.6 22Q14 20 20 22T31.4 22"'):'')+L('path','d="M8 6L10 56H30L32 6"')+L('ellipse','cx="20" cy="6" rx="12" ry="2.2"')+L('path','d="M10.4 50H29.6"'),
+ rocks:liq=>(liq?F('path',`d="M5.6 34L7 56H33L34.4 34Z" fill="${liq}" opacity=".5"`)+L('path','d="M5.7 34Q13 32 20 34T34.3 34"'):'')+L('path','d="M5 24L7 56H33L35 24"')+L('ellipse','cx="20" cy="24" rx="15" ry="2.4"')+L('path','d="M7.4 50H32.6"'),
+ martini:liq=>(liq?F('path',`d="M7 14L20 29.5L33 14Z" fill="${liq}" opacity=".5"`)+L('path','d="M7 14H33"'):'')+L('path','d="M2 8L20 30L38 8"')+L('ellipse','cx="20" cy="8" rx="18" ry="2.4"')+L('path','d="M20 30V55"')+L('ellipse','cx="20" cy="57" rx="9" ry="1.8"'),
+ coupe:liq=>(liq?F('path',`d="M4.6 26C6 32 12 36 20 36S34 32 35.4 26Z" fill="${liq}" opacity=".5"`)+L('path','d="M4.6 26H35.4"'):'')+L('path','d="M4 22C4 32 12 36 20 36S36 32 36 22"')+L('ellipse','cx="20" cy="22" rx="16" ry="2.4"')+L('path','d="M20 36V55"')+L('ellipse','cx="20" cy="57" rx="9" ry="1.8"'),
+ flute:liq=>(liq?F('path',`d="M14.3 10C14 20 14.4 27 16 30C17 33 23 33 24 30C25.6 27 26 20 25.7 10Z" fill="${liq}" opacity=".5"`):'')+L('path','d="M14 4C13.5 16 14 26 16 30C17 33 23 33 24 30C26 26 26.5 16 26 4"')+L('ellipse','cx="20" cy="4" rx="6" ry="1.3"')+L('path','d="M20 32.6V55"')+L('ellipse','cx="20" cy="57" rx="7" ry="1.6"'),
+ wine:liq=>(liq?F('path',`d="M8.3 16C8 24 12 29.5 20 30C28 29.5 32 24 31.7 16Z" fill="${liq}" opacity=".5"`)+L('path','d="M8.3 16H31.7"'):'')+L('path','d="M10 4C6 16 9 29 20 30C31 29 34 16 30 4"')+L('ellipse','cx="20" cy="4" rx="10" ry="1.6"')+L('path','d="M20 30V55"')+L('ellipse','cx="20" cy="57" rx="8" ry="1.8"'),
+ mug:()=>F('path','d="M8 18H32L31 56H9Z" fill="#D98A4E" opacity=".35"')+L('path','d="M8 18H32L31 56H9Z"')+L('ellipse','cx="20" cy="18" rx="12" ry="2"')+L('path','d="M32 24C40 24 41 40 31.4 42"'),
+ bottle:liq=>(liq?F('path',`d="M8.5 30H31.5V57.5H8.5Z" fill="${liq}" opacity=".5"`):'')+L('path','d="M16 2H24V14C24 18 32 20 32 28V58H8V28C8 20 16 18 16 14Z"')+L('path','d="M8 34H32M8 48H32"')+L('path','d="M15.5 7H24.5"'),
+ round:liq=>(liq?F('path',`d="M6.5 36C6.5 50 12 57.5 20 57.5C28 57.5 33.5 50 33.5 36Z" fill="${liq}" opacity=".5"`):'')+L('path','d="M17 2H23V12C23 16 34 20 34 36C34 50 28 58 20 58C12 58 6 50 6 36C6 20 17 16 17 12Z"'),
+ square:liq=>(liq?F('path',`d="M8.5 30H31.5V57.5H8.5Z" fill="${liq}" opacity=".5"`):'')+L('path','d="M16 2H24V12L32 18V58H8V18L16 12Z"')+L('path','d="M8 36H32"'),
+ bitters:()=>F('path','d="M10.5 34H29.5V55.5H10.5Z" fill="#B5651D" opacity=".45"')+L('path','d="M17 14H23V20C28 22 30 26 30 32V56H10V32C10 26 12 22 17 20Z"')+L('path','d="M18 14V8H22V14M10 38H30V50H10"')+L('path','d="M20 4V2M24 5L26 3M16 5L14 3"'),
+ shaker:()=>L('path','d="M16 2H24V9H16Z"')+L('path','d="M13 9H27L29 17H11Z"')+L('path','d="M9 17H31L28 58H12Z"')+L('path','d="M13 22V52"'),
+ jigger:()=>L('path','d="M7 4H33L23 26H17Z"')+L('path','d="M17 26L11 50H29L23 26"')+L('path','d="M11 12H29"'),
+ spoon:()=>L('path','d="M20 2V44"')+L('path','d="M18 10L22 12M18 16L22 18M18 22L22 24M18 28L22 30M18 34L22 36"')+L('ellipse','cx="20" cy="50" rx="4" ry="6.5"'),
+ strainer:()=>L('circle','cx="18" cy="30" r="13"')+L('path','d="M31 30H44"')+L('path','d="M8 38Q10.5 42 13 38T18 38T23 38T28 38"')+L('path','d="M12 24H24M11 30H25"'),
+ muddler:()=>L('path','d="M17 2H23V48Q23 56 20 56Q17 56 17 48Z"')+L('path','d="M17 42H23"'),
+ clock:()=>L('circle','cx="20" cy="30" r="16"')+L('path','d="M20 30V19M20 30L28 35"')+L('path','d="M20 14V16M36 30H34M20 46V44M4 30H6"'),
+ cutlery:()=>L('path','d="M10 8V24Q10 30 14 30V58"')+L('path','d="M14 8V22M18 8V24Q18 30 14 30"')+L('path','d="M27 8C33 14 33 28 27 32V58"'),
+ car:()=>L('path','d="M2 40L8 28H32L38 40V48H2Z"')+L('circle','cx="11" cy="49" r="4"')+L('circle','cx="29" cy="49" r="4"')+L('path','d="M10 28L12 22H28L30 28"')+L('path','d="M2 14L38 58"'),
+ drop:()=>F('path','d="M20 14C27 25 31 32 31 39A11 11 0 0 1 9 39C9 32 13 25 20 14Z" fill="#BFE3F2" opacity=".7"')+L('path','d="M20 14C27 25 31 32 31 39A11 11 0 0 1 9 39C9 32 13 25 20 14Z"')+L('path','d="M14 40Q15 46 20 47"'),
+ sugar:()=>F('path','d="M10 30L20 24L30 30V42L20 48L10 42Z" fill="#fff" opacity=".8"')+L('path','d="M10 30L20 24L30 30L20 36Z"')+L('path','d="M10 30V42L20 48V36M30 30V42L20 48"'),
+ mint:()=>L('path','d="M20 58C20 44 21 32 23 22"')+leaf(23,22,-10,1.1)+leaf(21,36,-60,1)+leaf(21,44,55,.95)+leaf(22,30,40,.9),
+ cherry:()=>F('circle','cx="17" cy="44" r="9" fill="#E2557A" opacity=".55"')+L('circle','cx="17" cy="44" r="9"')+L('path','d="M18 35C20 24 26 14 33 10"')+L('path','d="M13 40Q14 38 16 38"'),
+ olive:()=>L('path','d="M32 6L8 54"')+L('circle','cx="32" cy="6" r="2"')+F('ellipse','cx="17" cy="36" rx="8" ry="6" fill="#8CC63F" opacity=".55" transform="rotate(-62 17 36)"')+L('ellipse','cx="17" cy="36" rx="8" ry="6" transform="rotate(-62 17 36)"')+L('circle','cx="13.5" cy="42.5" r="2.2"'),
+ twist:()=>F('path','d="M6 20C12 10 18 14 20 22S28 36 34 24L34 30C28 42 20 36 18 28S12 16 6 26Z" fill="#F5A04A" opacity=".55"')+L('path','d="M6 20C12 10 18 14 20 22S28 36 34 24"')+L('path','d="M6 26C12 16 18 20 18 28S28 42 34 30"')+L('path','d="M6 20V26M34 24V30"')
+};
+const ar=(x1,y,x2)=>L('path',`d="M${x1} ${y}H${x2}M${x2-6} ${y-5}L${x2} ${y}L${x2-6} ${y+5}"`);
+const tube=(cx,top,h,lv,col)=>F('rect',`x="${cx-14}" y="${top+h-lv}" width="28" height="${lv}" fill="${col}" opacity=".6"`)+L('path',`d="M${cx-15} ${top}V${top+h}H${cx+15}V${top}"`)+L('path',`d="M${cx-15} ${top+h-28}h7M${cx-15} ${top+h-56}h7M${cx-15} ${top+h-14}h4M${cx-15} ${top+h-42}h4"`);
+const LA={
+ basic:[
+  ()=>lsvg(at(160,20,1.9,I.highball('#A8D86A')+cube(12,28,8)+cube(19,38,8)+L('path','d="M24 54L34 -4"')+wheel(32,6,6.2)+leaf(11,6,-20,.6)+leaf(13,6,25,.55))
+   +L('path','d="M146 108L100 120"')+TX(62,118,'기주','Base · 럼',12)
+   +L('path','d="M170 78L226 86"')+TX(270,84,'맛을 더하는 재료','Modifier',12)
+   +L('path','d="M190 26L226 32"')+TX(268,30,'장식','Garnish · 라임',12)),
+  ()=>lsvg([['보드카','Vodka','#CFE3F0'],['진','Gin','#B9DDC8'],['럼','Rum','#C98A3E'],['테킬라','Tequila','#E9D77A'],['위스키','Whisky','#B5651D'],['브랜디','Brandy','#9E4E1E']].map(([k,e,c],i)=>{const x=31+i*51.6;return at(x,14,1.15,I.bottle(c))+TX(x,100,k,e,12);}).join('')),
+  ()=>lsvg(wheel(36,52,20,'#F7E78A')+TX(36,108,'시트러스','Citrus')
+   +at(98,16,1.05,I.bottle('#F4EFD8'))+TX(98,108,'시럽','Syrup')
+   +at(160,16,1.05,I.round('#F5A04A'))+TX(160,108,'리큐르','Liqueur')
+   +at(222,16,1.05,I.bitters())+TX(222,108,'비터스','Bitters')
+   +at(284,16,1.05,I.highball('#DDEFF6')+L('circle','cx="16" cy="40" r="1.6"')+L('circle','cx="23" cy="32" r="1.3"')+L('circle','cx="19" cy="48" r="1.4"')+L('circle','cx="24" cy="44" r="1.1"'))+TX(284,108,'탄산','Soda')),
+  ()=>lsvg([['highball','하이볼','Highball','#A8D86A'],['rocks','록스','Rocks','#D99A3B'],['martini','마티니','Martini','#E9F2C9'],['coupe','쿠프','Coupe','#E2557A'],['flute','플루트','Flute','#F4E7A8']].map(([k,ko,en,c],i)=>{const x=36+i*62;return at(x,14,1.3,I[k](c))+TX(x,112,ko,en);}).join('')),
+  ()=>lsvg(at(42,34,1.05,I.highball('#A8D86A'))+L('path','d="M30 6Q44 10 44 40"')+L('path','d="M39 34L44 41L49 34"')+TX(42,114,'빌드','Build')
+   +at(122,14,1.15,I.shaker())+L('path','d="M92 30Q86 46 92 62M86 36Q82 46 86 56M152 30Q158 46 152 62M158 36Q162 46 158 56"')+TX(122,114,'셰이크','Shake')
+   +at(200,30,1.3,I.rocks('#F1F3EA'))+L('path','d="M214 18L196 88"')+L('ellipse','cx="200" cy="66" rx="16" ry="4"')+L('path','d="M212 62L217 66L210 69"')+TX(200,114,'스터','Stir')
+   +at(276,22,1.15,I.highball('#C7E89A')+leaf(15,52,-40,.7)+leaf(25,52,40,.7)+`<g transform="translate(9 -12) scale(.55)">${I.muddler()}</g>`)+TX(276,114,'머들','Muddle')),
+  ()=>lsvg(at(40,16,1.2,I.highball('#BFE3F2'))+TX(40,110,'물 한 잔','Water')
+   +at(120,18,1.25,I.clock())+TX(120,110,'천천히','Slowly')
+   +at(200,16,1.2,I.cutlery())+TX(200,110,'음식과 함께','With Food')
+   +at(280,20,1.25,I.car())+TX(280,110,'운전 금지','No Driving'))
+ ],
+ mid:[
+  ()=>lsvg(tube(40,22,70,56,'#C98A3E')+TX(40,16,'2','',16)+TX(40,112,'술','Spirit')
+   +TX(70,64,'+','',18)+tube(100,22,70,28,'#F7E78A')+TX(100,16,'1','',16)+TX(100,112,'신맛','Citrus')
+   +TX(130,64,'+','',18)+tube(160,22,70,28,'#F4EFD8')+TX(160,16,'1','',16)+TX(160,112,'단맛','Sweet')
+   +ar(186,58,218)+at(262,12,1.55,I.coupe('#E9F2C9'))+TX(262,118,'사워','Sour')),
+  ()=>lsvg([['highball','하이볼','Highball','#A8D86A'],['coupe','사워','Sour','#E9F2C9'],['rocks','올드패션드','Old Fashioned','#B5651D'],['martini','마티니','Martini','#F1F3EA'],['mug','뮬','Mule',''],['wine','스프리츠','Spritz','#F26B1D']].map(([k,ko,en,c],i)=>{const x=28+i*52.8;return at(x,18,1.1,I[k](c))+`<text class="ldt" x="${x}" y="104" text-anchor="middle" font-size="11">${ko}<tspan x="${x}" dy="12" class="lden" font-size="9">${en}</tspan></text>`;}).join('')),
+  ()=>lsvg(at(50,14,1.3,I.jigger())+TX(50,106,'지거','Jigger')
+   +at(128,10,1.3,I.shaker())+TX(128,106,'셰이커','Shaker')
+   +at(204,10,1.4,I.spoon())+TX(204,106,'바 스푼','Bar Spoon')
+   +at(276,14,1.3,I.strainer())+TX(276,106,'스트레이너','Strainer')),
+  ()=>lsvg(F('rect','x="40" y="28" width="56" height="56" rx="9" fill="#DDEFF6" opacity=".7"')+cube(40,28,56)+L('path','d="M50 40V70"')+TX(68,112,'큰 얼음','Big Cube')
+   +cube(126,46,30)+cube(146,66,26)+TX(156,112,'각얼음','Cubes')
+   +L('path','d="M226 62L236 54L242 64Z M246 74L258 70L254 82Z M232 82L242 78L240 90Z M260 56L270 60L262 66Z M266 80L278 76L274 88Z M250 90L262 92L254 98Z"')+TX(252,112,'부순 얼음','Crushed')
+   +L('path','d="M60 92Q62 97 60 98Q58 97 60 92Z M76 94Q78 99 76 100Q74 99 76 94Z"')),
+  ()=>lsvg(at(60,12,1.25,I.square('#F5A04A'))+TX(60,104,'트리플 섹','Triple Sec')
+   +at(160,12,1.25,I.bottle('#C1272D'))+TX(160,104,'캄파리','Campari')
+   +at(260,12,1.25,I.bottle('#7A2E3A'))+TX(260,104,'베르무트','Vermouth')
+   +at(104,22,.9,I.twist()))
+ ],
+ adv:[
+  ()=>lsvg(L('path','d="M146 130L160 110L174 130Z"')+L('path','d="M126 131H194"')+L('path','d="M160 110V46"')+L('path','d="M78 44H242"')+L('circle','cx="160" cy="44" r="4"')
+   +L('path','d="M82 44L66 82M82 44L98 82"')+L('path','d="M60 82H104Q98 94 82 94Q66 94 60 82Z"')+at(82,34,1.1,I.sugar())
+   +L('path','d="M238 44L222 82M238 44L254 82"')+L('path','d="M216 82H260Q254 94 238 94Q222 94 216 82Z"')+wheel(238,70,11,'#F7E78A')
+   +TX(82,116,'단맛','Sweet')+TX(238,116,'신맛','Sour')+TX(160,24,'쓴맛과 물로 마무리','Bitter & Dilution',11)),
+  ()=>lsvg(wheel(36,52,19)+TX(36,106,'라임','Lime')
+   +at(98,24,1.2,I.twist())+TX(98,106,'껍질','Twist')
+   +at(160,8,1.2,I.mint())+TX(160,106,'민트','Mint')
+   +at(222,12,1.2,I.cherry())+TX(222,106,'체리','Cherry')
+   +at(284,12,1.2,I.olive())+TX(284,106,'올리브','Olive')),
+  ()=>lsvg(at(50,24,1.3,I.sugar())+TX(50,20,'1','',16)+TX(50,112,'설탕','Sugar')
+   +TX(96,68,':','',20)+at(140,22,1.3,I.drop())+TX(140,20,'1','',16)+TX(140,112,'뜨거운 물','Hot Water')
+   +ar(184,62,216)+at(262,16,1.25,I.bottle('#F4EFD8'))+TX(262,112,'심플 시럽','Simple Syrup')),
+  ()=>lsvg(at(58,18,1.3,I.wine('#F26B1D')+cube(14,12,6)+cube(21,14,6))+TX(58,112,'식전','Aperitivo')
+   +ar(90,60,112)+L('circle','cx="160" cy="58" r="28"')+L('circle','cx="160" cy="58" r="19"')+L('path','d="M122 36V54Q122 60 126 60V84M126 36V50M130 36V54Q130 60 126 60M196 36C202 42 202 56 196 60V84"')+TX(160,112,'식사','Meal')
+   +ar(208,60,230)+at(268,18,1.3,I.martini('#3B2416'))+TX(268,112,'식후','Digestivo')),
+  ()=>lsvg(at(60,10,1.45,I.rocks('#C4741F'))+TX(60,112,'니트','Neat')
+   +at(160,10,1.45,I.rocks('#C4741F')+cube(10,30,10)+cube(20,34,10))+TX(160,112,'온더록스','On the Rocks')
+   +at(260,6,1.45,I.coupe('#C4741F'))+TX(260,112,'업','Up'))
+ ]
+};
+function playLine(el){
+  el.classList.remove('on');void el.offsetWidth;
+  const items=el.querySelectorAll('.ld,.ldf,.ldt');const n=el.querySelectorAll('.ld').length||1;
+  const step=Math.min(.11,2.6/n);let t=0;
+  items.forEach(x=>{if(x.classList.contains('ld')){x.style.setProperty('--d',t.toFixed(2)+'s');t+=step;}else x.style.setProperty('--d',(t+.25).toFixed(2)+'s');});
+  el.classList.add('on');
+}
+let LIO=null;
+function bindLineArt(){
+  const arts=view.querySelectorAll('.lart.line');
+  arts.forEach(a=>a.onclick=()=>playLine(a));
+  if(LIO)LIO.disconnect();
+  if(!('IntersectionObserver' in window)){arts.forEach(playLine);return;}
+  LIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){LIO.unobserve(e.target);playLine(e.target);}}),{threshold:.35});
+  arts.forEach(a=>LIO.observe(a));
+}
+
 let LQ=null;
 function renderLearn(){
   const lv=LEVELS.find(l=>l.id===S.level)||LEVELS[0];const badges=store.get('badges',{});
@@ -1190,7 +1322,7 @@ function renderLearn(){
   <div class="lvtabs">${LEVELS.map(l=>`<button data-lv="${l.id}" class="${l.id===lv.id?'on':''}">${badges[l.id]?'<i class="lvok">✓</i>':''}${l.name}<small>${l.en}</small></button>`).join('')}</div>
   <div class="ljump">${lv.cards.map((c,i)=>`<button data-j="${i}">${i+1}. ${esc(c.k.replace(/^\d+\.\s*/,'').split(' · ')[0])}</button>`).join('')}<button data-j="quiz">🎓 퀴즈</button></div>
   ${lv.cards.map((c,i)=>`<div class="lcard" id="lc${i}">
-    <div class="lart">${c.art()}</div>
+    ${LA[lv.id]&&LA[lv.id][i]?`<div class="lart line" title="눌러서 다시 보기">${LA[lv.id][i]()}</div>`:`<div class="lart">${c.art()}</div>`}
     <div class="lbody"><div class="kicker">${c.k}</div><h2 style="margin-top:4px">${c.t}</h2>${c.b}<div class="tip">💡 ${c.tip}</div></div>
   </div>`).join('')}
   <div class="lcard quizbox" id="lcquiz"></div>
@@ -1202,6 +1334,7 @@ function renderLearn(){
   const tn=$('#toNext');if(tn)tn.onclick=()=>{S.level=next.id;store.set('level',S.level);LQ=null;renderLearn();window.scrollTo(0,0);};
   if(!LQ||LQ.lv!==lv.id)LQ={lv:lv.id,i:-1,score:0,picked:null};
   drawQuiz(lv);
+  bindLineArt();
 }
 function drawQuiz(lv){
   const box=$('#lcquiz');if(!box)return;const Q=QUIZZES[lv.id];const badges=store.get('badges',{});
