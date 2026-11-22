@@ -375,6 +375,31 @@ h1.thin{font-weight:300;font-size:22px;letter-spacing:.01em;margin:16px 0 2px}
 .crop-btns{display:flex;gap:8px;width:min(86vw,360px)}.crop-btns .btn{flex:1;min-height:46px;padding:10px}
 .crop-btns .btn.ghost{color:#D8F0B0;border-color:rgba(216,240,176,.5)}
 .pp-btns button{font-size:14px}
+.topbtns{display:flex;gap:8px}
+.sheet.tall{max-height:88vh;max-height:88dvh;min-height:72vh}
+.sr-box{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:0 12px;color:var(--muted);margin:6px 0 12px}
+.sr-box:focus-within{border-color:var(--pri3)}
+.sr-box input{flex:1;border:0;outline:0;background:none;padding:12px 0;font-size:16px;min-width:0;color:var(--ink)}
+.sr-hint{font-size:13px;font-weight:700;color:var(--muted);margin:4px 0 8px}
+.sr-chips{display:flex;flex-wrap:wrap;gap:8px}
+.sr-chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:14px;font-weight:600;color:var(--pri-d)}
+.sr-sec{margin:14px 0 4px}
+.sr-sec h3,.sheet h3 .muted{font-size:14px}
+.sr-sec h3{color:var(--muted);margin:0 0 6px}.sr-sec h3 span{color:var(--pri3);margin-left:4px}
+.sr-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:0;border-radius:14px;box-shadow:var(--shadow);padding:10px 12px;margin:6px 0;color:var(--ink)}
+.sr-row .g{flex:none;width:34px;height:40px;border-radius:10px;background:var(--cream);display:grid;place-items:center;font-size:18px}
+.sr-row .g.lv{font-size:12px;font-weight:800;color:var(--pri-d);width:40px}
+.sr-row .tx{flex:1;min-width:0}
+.sr-row .tx b{display:block;font-size:15px;line-height:1.35}
+.sr-row .tx small{display:block;font-size:12px;color:var(--muted);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-row svg{flex:none;color:var(--muted)}
+.sr-empty{text-align:center;color:var(--muted);padding:22px 8px 12px;font-size:15px}
+.sr-foot{text-align:center;color:var(--muted);font-size:13px;margin:18px 0 6px}
+.sr-ext{display:flex;gap:8px;margin-top:10px}.sr-ext .btn{flex:1;min-height:42px;padding:8px;font-size:14px;text-decoration:none;display:flex;align-items:center;justify-content:center}
+.sheet .sr-back{margin:0 0 6px;color:var(--muted)}
+.sheet .link{color:var(--pri-d)}
+button.prod{width:100%;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;color:var(--ink);font:inherit}
+.prod .pn small.nt{color:var(--ink);opacity:.75}
 .ver{text-align:center;font-size:11px;color:#7E8C70;opacity:.75;margin:0 0 6px;letter-spacing:.04em}
 /* 기록 창: 세로 사진 + 옆 정보 */
 .rec-top{display:grid;grid-template-columns:42% 1fr;gap:12px;align-items:start;margin:14px 0}
@@ -453,9 +478,10 @@ h1.thin{font-weight:300;font-size:22px;letter-spacing:.01em;margin:16px 0 2px}
     <button class="brand" data-go="home" aria-label="CocktailPick 홈으로">
       <span class="script"><span style="color:#8CC63F">Cocktail</span><span style="color:#C9B45A">Pick</span></span>
     </button>
+    <div class="topbtns"><button class="iconbtn" id="searchBtn" aria-label="칵테일 찾기"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
     <button class="iconbtn" id="settingsBtn" aria-label="설정">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-    </button>
+    </button></div>
   </header>
   <main id="view"></main>
   <nav class="tabs" id="tabs">
@@ -490,7 +516,7 @@ function defaultCurrency(){
 let settings=Object.assign({currency:defaultCurrency(),unit:'ml'},store.get('settings',null)||{});
 
 /* 연결 주소 (Bitly) */
-const APP_VERSION='1.0.1',APP_DATE='2026.11.22';
+const APP_VERSION='1.1.0',APP_DATE='2026.11.22';
 const WINEPICK_URL='https://bit.ly/winepick';
 const SHARE_URL='https://bit.ly/cocktailpick'; // 친구에게 보내는 주소
 const QR_SVG="<svg viewBox=\"-2 -2 29 29\" width=\"100%\" height=\"100%\" shape-rendering=\"crispEdges\" aria-label=\"CocktailPick QR 코드\"><rect x=\"-2\" y=\"-2\" width=\"29\" height=\"29\" fill=\"#fff\"/><path d=\"M0 0h7v1h-7zM8 0h1v1h-1zM11 0h4v1h-4zM18 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h2v1h-2zM14 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM10 2h1v1h-1zM12 2h3v1h-3zM18 2h1v1h-1zM20 2h3v1h-3zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM12 3h2v1h-2zM15 3h2v1h-2zM18 3h1v1h-1zM20 3h3v1h-3zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h1v1h-1zM11 4h1v1h-1zM13 4h2v1h-2zM16 4h1v1h-1zM18 4h1v1h-1zM20 4h3v1h-3zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM10 5h1v1h-1zM12 5h2v1h-2zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h7v1h-7zM8 7h1v1h-1zM10 7h2v1h-2zM13 7h1v1h-1zM15 7h1v1h-1zM0 8h2v1h-2zM3 8h2v1h-2zM6 8h1v1h-1zM9 8h4v1h-4zM14 8h3v1h-3zM18 8h1v1h-1zM24 8h1v1h-1zM1 9h2v1h-2zM4 9h1v1h-1zM9 9h1v1h-1zM12 9h1v1h-1zM15 9h1v1h-1zM19 9h5v1h-5zM0 10h2v1h-2zM3 10h1v1h-1zM5 10h2v1h-2zM8 10h1v1h-1zM10 10h2v1h-2zM15 10h3v1h-3zM21 10h1v1h-1zM24 10h1v1h-1zM1 11h2v1h-2zM4 11h1v1h-1zM7 11h1v1h-1zM9 11h2v1h-2zM12 11h1v1h-1zM15 11h1v1h-1zM18 11h1v1h-1zM21 11h4v1h-4zM0 12h1v1h-1zM4 12h1v1h-1zM6 12h2v1h-2zM9 12h1v1h-1zM12 12h1v1h-1zM16 12h1v1h-1zM18 12h2v1h-2zM24 12h1v1h-1zM0 13h3v1h-3zM4 13h1v1h-1zM7 13h1v1h-1zM11 13h1v1h-1zM13 13h3v1h-3zM17 13h1v1h-1zM20 13h1v1h-1zM23 13h1v1h-1zM0 14h2v1h-2zM3 14h4v1h-4zM9 14h2v1h-2zM13 14h1v1h-1zM15 14h1v1h-1zM17 14h2v1h-2zM20 14h5v1h-5zM0 15h1v1h-1zM2 15h1v1h-1zM4 15h2v1h-2zM8 15h1v1h-1zM11 15h2v1h-2zM16 15h1v1h-1zM18 15h2v1h-2zM21 15h2v1h-2zM24 15h1v1h-1zM0 16h4v1h-4zM5 16h2v1h-2zM8 16h2v1h-2zM11 16h3v1h-3zM16 16h5v1h-5zM22 16h2v1h-2zM8 17h1v1h-1zM13 17h1v1h-1zM15 17h2v1h-2zM20 17h1v1h-1zM22 17h2v1h-2zM0 18h7v1h-7zM9 18h1v1h-1zM11 18h1v1h-1zM13 18h2v1h-2zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM24 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM10 19h1v1h-1zM12 19h2v1h-2zM15 19h2v1h-2zM20 19h1v1h-1zM23 19h1v1h-1zM0 20h1v1h-1zM2 20h3v1h-3zM6 20h1v1h-1zM8 20h1v1h-1zM11 20h2v1h-2zM14 20h7v1h-7zM0 21h1v1h-1zM2 21h3v1h-3zM6 21h1v1h-1zM8 21h1v1h-1zM10 21h2v1h-2zM13 21h2v1h-2zM16 21h1v1h-1zM18 21h1v1h-1zM23 21h2v1h-2zM0 22h1v1h-1zM2 22h3v1h-3zM6 22h1v1h-1zM11 22h2v1h-2zM16 22h2v1h-2zM20 22h5v1h-5zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM11 23h2v1h-2zM19 23h2v1h-2zM22 23h3v1h-3zM0 24h7v1h-7zM8 24h4v1h-4zM16 24h2v1h-2zM21 24h1v1h-1zM24 24h1v1h-1z\" fill=\"#14200A\"/></svg>";
@@ -552,7 +578,35 @@ const ING={
  cream:{n:'생크림·우유',en:'Cream / Milk',g:'pantry'},
  coco_cream:{n:'코코넛 크림',en:'Coconut Cream',g:'pantry'},
  coffee:{n:'에스프레소·커피',en:'Espresso / Coffee',g:'pantry'},
- salt:{n:'소금',en:'Salt',g:'pantry'}
+ salt:{n:'소금',en:'Salt',g:'pantry'},
+ scotch:{n:'스카치 위스키',en:'Scotch Whisky',g:'base'},
+ mezcal:{n:'메스칼',en:'Mezcal',g:'base'},
+ pisco:{n:'피스코',en:'Pisco',g:'base'},
+ cachaca:{n:'카샤사',en:'Cachaça',g:'base'},
+ curacao:{n:'블루 큐라소',en:'Blue Curaçao',g:'liq'},
+ lillet:{n:'릴레 블랑',en:'Lillet Blanc',g:'liq'},
+ irish_cream:{n:'아이리시 크림 (베일리스)',en:'Irish Cream',g:'liq'},
+ chartreuse:{n:'샤르트뢰즈',en:'Chartreuse',g:'liq'},
+ maraschino:{n:'마라스키노 리큐르',en:'Maraschino Liqueur',g:'liq'},
+ absinthe:{n:'압생트',en:'Absinthe',g:'liq'},
+ elderflower:{n:'엘더플라워 리큐르',en:'Elderflower Liqueur',g:'liq'},
+ drambuie:{n:'드람부이',en:'Drambuie',g:'liq'},
+ amaro:{n:'아마로',en:'Amaro',g:'liq'},
+ benedictine:{n:'베네딕틴',en:'Bénédictine',g:'liq'},
+ cacao:{n:'크렘 드 카카오',en:'Crème de Cacao',g:'liq'},
+ menthe:{n:'크렘 드 망트',en:'Crème de Menthe',g:'liq'},
+ cassis:{n:'크렘 드 카시스',en:'Crème de Cassis',g:'liq'},
+ sprite:{n:'사이다·스프라이트',en:'Lemon-Lime Soda',g:'mix'},
+ passion:{n:'패션프루트 퓌레·시럽',en:'Passion Fruit',g:'mix'},
+ peach_pu:{n:'복숭아 퓌레',en:'Peach Purée',g:'mix'},
+ basil:{n:'바질',en:'Basil',g:'fresh'},
+ cucumber:{n:'오이',en:'Cucumber',g:'fresh'},
+ ginger_root:{n:'생강',en:'Fresh Ginger',g:'fresh'},
+ honey:{n:'꿀',en:'Honey',g:'pantry'},
+ orgeat:{n:'오르쟈 (아몬드 시럽)',en:'Orgeat',g:'pantry'},
+ egg:{n:'달걀 흰자',en:'Egg White',g:'pantry'},
+ nutmeg:{n:'넛맥',en:'Nutmeg',g:'pantry'},
+ water:{n:'물',en:'Water',g:'pantry'}
 };
 const ING_GROUPS=[['base','술 (기주)','Base Spirits'],['liq','리큐르·와인','Liqueurs & Wine'],['mix','탄산·주스','Mixers'],['fresh','과일·허브','Fresh'],['pantry','단맛·기타','Pantry']];
 
@@ -673,6 +727,11 @@ const COCKTAILS=[
   ing:[['whisky',45],['soda',120],['lemon','껍질 또는 조각',1]],
   steps:['잔에 얼음을 가득 채우고 저어 잔을 차갑게 해요.','위스키를 붓고 탄산수를 잔 벽으로 조심히 부어요.','한 번만 살짝 저어요. 레몬 껍질을 올려도 좋아요.'],
   order:'단맛을 원하면 탄산수 대신 진저에일, 사이다로 바꿔 달라고 해요.'},
+ {id:'jackcoke',name:'잭 콕',en:'Jack & Coke',base:'whisky',glass:'highball',method:'build',color:'#5A2E16',garn:'lime',s:3,a:1,bi:0,st:2,fz:1,diff:1,occ:['alone','party'],flavor:'콜라, 바닐라, 캐러멜',
+  desc:'위스키에 콜라를 섞은 하이볼이에요. 위스키 맛이 익숙하지 않아도 달콤하게 즐길 수 있어요.',
+  ing:[['whisky',45],['cola',120],['lime','조각 1개',1]],
+  steps:['잔에 얼음을 가득 채워요.','위스키를 붓고 콜라를 천천히 채워요.','한 번 살짝 젓고, 라임 조각을 짜 넣어도 좋아요.'],
+  order:'잭 다니엘로 만들면 잭 콕, 다른 버번이면 버번 콕이라고 불러요.'},
  {id:'mintjulep',name:'민트 줄렙',en:'Mint Julep',base:'whisky',glass:'rocks',method:'muddle',color:'#C9A24A',garn:'mint',s:2,a:0,bi:0,st:4,diff:2,occ:['alone','party'],flavor:'민트, 버번, 차가운 얼음',
   desc:'미국 켄터키 경마 대회의 상징 칵테일이에요. 잘게 부순 얼음에 민트 향이 시원하게 퍼져요.',
   ing:[['whisky',60],['sugar','시럽 10ml'],['mint','잎 8~10장']],
@@ -729,33 +788,309 @@ const COCKTAILS=[
  {id:'shirleytemple',name:'셜리 템플',en:'Shirley Temple',base:'none',glass:'highball',method:'build',color:'#F4A3A8',garn:'cherry',s:4,a:1,bi:0,st:0,fz:1,diff:1,occ:['party','alone'],flavor:'생강, 석류 시럽, 체리',
   desc:'미국의 대표 무알코올 칵테일이에요. 진저에일에 그레나딘을 더해 분홍빛이고 달콤해요.',
   ing:[['ginger',150],['grenadine',15],['cherry','1~2개',1]],
-  steps:['얼음을 채운 잔에 진저에일을 부어요.','그레나딘을 넣고 살짝 저어요.','체리로 장식해요.']}
+  steps:['얼음을 채운 잔에 진저에일을 부어요.','그레나딘을 넣고 살짝 저어요.','체리로 장식해요.']},
+ {id:'lastword',name:'라스트 워드',en:'Last Word',base:'gin',glass:'coupe',method:'shake',color:'#C9DE8C',garn:'cherry',s:3,a:3,bi:1,st:4,diff:2,occ:['date','before'],flavor:'허브, 체리, 라임',
+  desc:'진, 샤르트뢰즈, 마라스키노, 라임을 같은 양으로 섞는 금주법 시대 칵테일이에요. 허브 향이 강하고 새콤달콤해요.',
+  ing:[['gin',22.5],['chartreuse',22.5],['maraschino',22.5],['lime','즙 22.5ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣어요.','10~15초 세게 흔들어요.','차가운 쿠프 잔에 걸러 따라요.'],
+  order:'그린 샤르트뢰즈로 만드는 게 정석이에요.'},
+ {id:'aviation',name:'에이비에이션',en:'Aviation',base:'gin',glass:'coupe',method:'shake',color:'#D9D3EC',garn:'cherry',s:2,a:3,bi:0,st:4,diff:2,occ:['date','before'],flavor:'레몬, 체리, 꽃향기',
+  desc:'하늘색 빛깔 때문에 "비행"이라는 이름이 붙었어요. 원래 레시피에는 제비꽃 리큐르(크렘 드 비올레트)가 조금 들어가요.',
+  ing:[['gin',45],['maraschino',15],['lemon','즙 15ml']],
+  steps:['셰이커에 재료와 얼음을 넣고 흔들어요.','차가운 쿠프 잔에 걸러 따라요.','칵테일 체리로 장식해요.'],
+  order:'크렘 드 비올레트가 있으면 5ml 넣으면 하늘빛이 나요.'},
+ {id:'corpse2',name:'코프스 리바이버 No.2',en:'Corpse Reviver No.2',base:'gin',glass:'coupe',method:'shake',color:'#F1EBC4',garn:'orange',s:2,a:4,bi:1,st:4,diff:2,occ:['before','date'],flavor:'레몬, 오렌지, 허브',
+  desc:'"죽은 사람도 깨운다"는 재미있는 이름의 클래식이에요. 네 가지 재료를 같은 양으로 섞어 상큼하고 깔끔해요.',
+  ing:[['gin',22.5],['triple',22.5],['lillet',22.5],['lemon','즙 22.5ml'],['absinthe','몇 방울',1]],
+  steps:['쿠프 잔 안쪽을 압생트로 살짝 헹궈요. (없으면 건너뛰어요)','나머지 재료를 얼음과 함께 흔들어요.','잔에 걸러 따라요.']},
+ {id:'beesknees',name:'비즈 니즈',en:"Bee's Knees",base:'gin',glass:'coupe',method:'shake',color:'#F3DE8A',garn:'lemon',s:3,a:3,bi:0,st:3,diff:1,occ:['date','alone'],flavor:'꿀, 레몬, 허브',
+  desc:'진에 꿀과 레몬을 더한 부드러운 칵테일이에요. "최고"라는 뜻의 옛 미국 속어가 이름이에요.',
+  ing:[['gin',52.5],['honey','꿀 시럽 22.5ml'],['lemon','즙 22.5ml']],
+  steps:['꿀은 같은 양의 따뜻한 물에 녹여 꿀 시럽을 만들어요.','셰이커에 모든 재료와 얼음을 넣고 흔들어요.','차가운 쿠프 잔에 걸러 따라요.']},
+ {id:'southside',name:'사우스사이드',en:'Southside',base:'gin',glass:'coupe',method:'shake',color:'#CFE8B0',garn:'mint',s:2,a:3,bi:0,st:3,diff:2,occ:['date','alone'],flavor:'민트, 라임, 허브',
+  desc:'진으로 만든 모히토 같은 칵테일이에요. 탄산 없이 민트와 라임이 상쾌하게 어우러져요.',
+  ing:[['gin',60],['lime','즙 30ml'],['sugar','시럽 15ml'],['mint','잎 6~8장']],
+  steps:['셰이커에 민트 잎과 나머지 재료, 얼음을 넣어요.','세게 흔들어 민트 향을 내요.','고운 체로 걸러 쿠프 잔에 따르고 민트 잎을 띄워요.']},
+ {id:'basilsmash',name:'진 바질 스매시',en:'Gin Basil Smash',base:'gin',glass:'rocks',method:'muddle',color:'#9FD36B',garn:'',s:2,a:3,bi:0,st:3,diff:2,occ:['alone','date','party'],flavor:'바질, 레몬, 허브',
+  desc:'2008년 독일 함부르크에서 탄생한 현대 클래식이에요. 초록빛 바질 향이 가득해서 인기가 많아요.',
+  ing:[['gin',60],['lemon','즙 25ml'],['sugar','시럽 20ml'],['basil','잎 한 줌']],
+  steps:['셰이커에 바질 잎과 레몬즙을 넣고 살살 눌러 향을 내요.','진, 시럽, 얼음을 넣고 세게 흔들어요.','얼음을 채운 잔에 고운 체로 걸러 따르고 바질 잎으로 장식해요.']},
+ {id:'whitelady',name:'화이트 레이디',en:'White Lady',base:'gin',glass:'coupe',method:'shake',color:'#F4F1DE',garn:'lemon',s:2,a:4,bi:0,st:4,diff:2,occ:['date','before'],flavor:'레몬, 오렌지, 깔끔함',
+  desc:'진, 오렌지 리큐르, 레몬으로 만드는 우아한 클래식이에요. 달걀 흰자를 조금 넣어 부드럽게 만들기도 해요.',
+  ing:[['gin',40],['triple',30],['lemon','즙 20ml'],['egg','조금',1]],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','차가운 쿠프 잔에 걸러 따라요.']},
+ {id:'ginfizz',name:'진 피즈',en:'Gin Fizz',base:'gin',glass:'highball',method:'shake',color:'#F3F5E2',garn:'lemon',s:2,a:3,bi:0,st:2,fz:1,diff:2,occ:['alone','before','party'],flavor:'레몬, 탄산, 허브',
+  desc:'진 사워에 탄산수를 더한 시원한 칵테일이에요. 톰 콜린스와 비슷하지만 얼음 없이 짧게 마시는 게 원래 방식이에요.',
+  ing:[['gin',45],['lemon','즙 30ml'],['sugar','시럽 10ml'],['soda',80]],
+  steps:['셰이커에 진, 레몬즙, 시럽, 얼음을 넣고 흔들어요.','잔에 따르고 탄산수를 채워요.','레몬 조각으로 장식해요.']},
+ {id:'vesper',name:'베스퍼',en:'Vesper',base:'gin',glass:'martini',method:'shake',color:'#F2EFD4',garn:'lemon',s:1,a:0,bi:1,st:5,diff:2,occ:['date','before'],flavor:'진하고 깔끔한 술맛, 레몬 향',
+  desc:'소설 속 제임스 본드가 주문해 유명해진 마티니예요. 진과 보드카에 릴레를 더해 아주 강하고 깔끔해요.',
+  ing:[['gin',45],['vodka',15],['lillet',7.5],['lemon','껍질 한 조각',1]],
+  steps:['셰이커나 믹싱 글라스에 재료와 얼음을 넣어요.','충분히 차가워질 때까지 흔들거나 저어요.','차가운 마티니 잔에 따르고 레몬 껍질 향을 입혀요.'],
+  order:'도수가 아주 높아요. 천천히 나눠 마셔요.'},
+ {id:'sazerac',name:'사제락',en:'Sazerac',base:'whisky',glass:'rocks',method:'stir',color:'#B5651D',garn:'lemon',s:2,a:0,bi:2,st:5,diff:3,occ:['date','after'],flavor:'라이 위스키, 아니스, 향신료',
+  desc:'뉴올리언스를 대표하는 오래된 칵테일이에요. 라이 위스키에 비터스와 압생트 향을 입혀 진하고 향긋해요.',
+  ing:[['whisky','라이 위스키 50ml'],['sugar','각설탕 1개 (시럽 7.5ml)'],['bitters','페이쇼드 비터스 3방울'],['absinthe','잔 헹굼용',1],['lemon','껍질 한 조각',1]],
+  steps:['얼음 없는 잔 안쪽을 압생트로 헹궈 두어요.','믹싱 글라스에 설탕과 비터스를 녹이고 위스키와 얼음을 넣어 저어요.','준비한 잔에 걸러 따르고 레몬 껍질 향만 입혀요.'],
+  order:'원래는 페이쇼드(Peychaud\'s) 비터스를 써요.'},
+ {id:'paperplane',name:'페이퍼 플레인',en:'Paper Plane',base:'whisky',glass:'coupe',method:'shake',color:'#E58A3C',garn:'',s:3,a:3,bi:3,st:3,diff:2,occ:['date','party'],flavor:'쌉쌀한 오렌지, 레몬, 버번',
+  desc:'2007년에 만들어진 현대 클래식이에요. 네 가지 재료를 같은 양으로 섞어 새콤하고 쌉쌀하고 달콤한 맛이 균형 있어요.',
+  ing:[['whisky',22.5],['aperol',22.5],['amaro','노니노 22.5ml'],['lemon','즙 22.5ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','차가운 쿠프 잔에 걸러 따라요.'],
+  order:'원래는 아마로 노니노를 써요.'},
+ {id:'penicillin',name:'페니실린',en:'Penicillin',base:'whisky',glass:'rocks',method:'shake',color:'#E3B04B',garn:'lemon',s:3,a:3,bi:1,st:3,diff:3,occ:['alone','date'],flavor:'꿀, 생강, 스모키',
+  desc:'뉴욕의 바텐더가 만든 현대 클래식이에요. 꿀과 생강이 감기약처럼 따뜻하고, 위에 띄운 아일라 위스키가 스모키해요.',
+  ing:[['scotch',60],['lemon','즙 22.5ml'],['honey','꿀 시럽 22.5ml'],['ginger_root','얇게 3~4조각'],['scotch','아일라 위스키 7.5ml (위에 띄우기)',1]],
+  steps:['셰이커에 생강을 넣고 눌러 즙을 내요.','블렌디드 스카치, 레몬즙, 꿀 시럽, 얼음을 넣고 흔들어요.','큰 얼음을 넣은 잔에 걸러 따르고, 아일라 위스키를 숟가락 위로 살짝 띄워요.']},
+ {id:'rustynail',name:'러스티 네일',en:'Rusty Nail',base:'whisky',glass:'rocks',method:'build',color:'#B9772E',garn:'lemon',s:3,a:0,bi:1,st:4,diff:1,occ:['after','alone'],flavor:'꿀, 허브, 스카치',
+  desc:'스카치에 꿀과 허브로 만든 드람부이를 더한 간단한 칵테일이에요. 식사 후 천천히 마시기 좋아요.',
+  ing:[['scotch',45],['drambuie',25],['lemon','껍질 한 조각',1]],
+  steps:['얼음을 넣은 잔에 두 재료를 부어요.','살짝 저어 섞어요.','레몬 껍질로 향을 입혀요.']},
+ {id:'robroy',name:'롭 로이',en:'Rob Roy',base:'whisky',glass:'martini',method:'stir',color:'#9A3E1E',garn:'cherry',s:2,a:0,bi:2,st:4,diff:1,occ:['date','after'],flavor:'스카치, 허브, 체리',
+  desc:'맨해튼을 스카치 위스키로 만든 버전이에요. 스코틀랜드 영웅의 이름을 땄어요.',
+  ing:[['scotch',50],['svermouth',25],['bitters','1방울']],
+  steps:['믹싱 글라스에 재료와 얼음을 넣고 20~30초 저어요.','차가운 마티니 잔에 걸러 따라요.','칵테일 체리로 장식해요.']},
+ {id:'goldrush',name:'골드 러시',en:'Gold Rush',base:'whisky',glass:'rocks',method:'shake',color:'#E0A33A',garn:'lemon',s:3,a:3,bi:0,st:3,diff:1,occ:['alone','date'],flavor:'꿀, 레몬, 버번',
+  desc:'위스키 사워의 설탕을 꿀로 바꾼 현대 클래식이에요. 재료 세 가지로 쉽게 만들 수 있어요.',
+  ing:[['whisky',60],['honey','꿀 시럽 22.5ml'],['lemon','즙 22.5ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','큰 얼음을 넣은 잔에 걸러 따라요.']},
+ {id:'whiskeysmash',name:'위스키 스매시',en:'Whiskey Smash',base:'whisky',glass:'rocks',method:'muddle',color:'#D9A441',garn:'mint',s:3,a:3,bi:0,st:3,diff:2,occ:['alone','party'],flavor:'민트, 레몬, 버번',
+  desc:'레몬과 민트를 으깨 넣은 상쾌한 위스키 칵테일이에요. 민트 줄렙보다 새콤해요.',
+  ing:[['whisky',60],['lemon','1/2개'],['sugar','시럽 22.5ml'],['mint','잎 6~8장']],
+  steps:['셰이커에 레몬 조각과 민트를 넣고 눌러 즙을 내요.','위스키, 시럽, 얼음을 넣고 흔들어요.','잘게 부순 얼음을 채운 잔에 걸러 따르고 민트로 장식해요.']},
+ {id:'godfather',name:'갓파더',en:'Godfather',base:'whisky',glass:'rocks',method:'build',color:'#A8571E',garn:'',s:3,a:0,bi:1,st:4,diff:1,occ:['after','alone'],flavor:'아몬드, 스카치',
+  desc:'영화 대부에서 이름을 딴 칵테일이에요. 스카치와 아마레토를 섞어 달콤하고 고소해요.',
+  ing:[['scotch',35],['amaretto',35]],
+  steps:['얼음을 넣은 잔에 두 재료를 부어요.','살짝 저어요.']},
+ {id:'hottoddy',name:'핫 토디',en:'Hot Toddy',base:'whisky',glass:'hot',method:'build',color:'#D69A45',garn:'lemon',s:3,a:2,bi:0,st:2,diff:1,occ:['alone','after'],flavor:'꿀, 레몬, 따뜻함',
+  desc:'위스키에 꿀과 레몬, 뜨거운 물을 섞은 따뜻한 칵테일이에요. 추운 날이나 감기 기운이 있을 때 많이 마셔요.',
+  ing:[['whisky',45],['honey','1큰술'],['lemon','즙 15ml'],['water','뜨거운 물 100ml']],
+  steps:['내열 잔에 꿀과 레몬즙을 넣어요.','위스키를 붓고 뜨거운 물을 채워 저어요.','레몬 조각이나 시나몬 스틱으로 장식해요.']},
+ {id:'maitai',name:'마이타이',en:'Mai Tai',base:'rum',glass:'rocks',method:'shake',color:'#D9883A',garn:'mint',s:3,a:3,bi:0,st:3,diff:3,occ:['party','date'],flavor:'라임, 아몬드, 럼',
+  desc:'"최고"라는 뜻의 타히티 말에서 이름을 딴 트로피컬 칵테일이에요. 두 가지 럼과 아몬드 시럽이 깊은 맛을 내요.',
+  ing:[['wrum',30],['drum',30],['triple',15],['orgeat',15],['lime','즙 30ml'],['sugar','시럽 7.5ml',1]],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','잘게 부순 얼음을 채운 잔에 따라요.','민트 가지와 라임 껍질로 장식해요.']},
+ {id:'hemingway',name:'헤밍웨이 다이키리',en:'Hemingway Daiquiri',base:'rum',glass:'coupe',method:'shake',color:'#F1E6C0',garn:'lime',s:1,a:4,bi:1,st:3,diff:2,occ:['date','before'],flavor:'자몽, 라임, 체리 향',
+  desc:'단 것을 싫어한 작가 헤밍웨이를 위해 만든 다이키리예요. 설탕 대신 자몽과 마라스키노가 들어가 드라이해요.',
+  ing:[['wrum',60],['maraschino',15],['grapefruit',15],['lime','즙 22.5ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','차가운 쿠프 잔에 걸러 따라요.']},
+ {id:'painkiller',name:'페인킬러',en:'Painkiller',base:'rum',glass:'highball',method:'shake',color:'#F2C46B',garn:'orange',cr:1,s:4,a:1,bi:0,st:2,diff:2,occ:['party','alone'],flavor:'파인애플, 코코넛, 넛맥',
+  desc:'영국령 버진아일랜드의 해변 바에서 태어난 칵테일이에요. 피냐 콜라다에 오렌지와 넛맥을 더한 맛이에요.',
+  ing:[['drum',60],['pine',120],['oj',30],['coco_cream',30],['nutmeg','조금 (위에 갈아 뿌리기)',1]],
+  steps:['셰이커에 넛맥을 뺀 재료와 얼음을 넣고 흔들어요.','얼음을 채운 긴 잔에 따라요.','넛맥을 갈아 뿌리고 오렌지 조각으로 장식해요.']},
+ {id:'junglebird',name:'정글 버드',en:'Jungle Bird',base:'rum',glass:'rocks',method:'shake',color:'#C9452E',garn:'',s:3,a:2,bi:3,st:3,diff:2,occ:['party','alone'],flavor:'파인애플, 쌉쌀함, 다크 럼',
+  desc:'1970년대 말레이시아 쿠알라룸푸르 호텔에서 태어났어요. 트로피컬 칵테일에 캄파리의 쌉쌀함이 더해진 독특한 맛이에요.',
+  ing:[['drum',45],['campari',22.5],['pine',45],['lime','즙 15ml'],['sugar','시럽 15ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','얼음을 넣은 잔에 걸러 따라요.']},
+ {id:'caipirinha',name:'카이피리냐',en:'Caipirinha',base:'rum',glass:'rocks',method:'muddle',color:'#D8EDB0',garn:'lime',s:3,a:4,bi:0,st:3,diff:1,occ:['party','alone'],flavor:'라임, 설탕, 사탕수수 향',
+  desc:'브라질의 국민 칵테일이에요. 사탕수수로 만든 카샤사에 라임과 설탕을 으깨 넣어 새콤달콤해요.',
+  ing:[['cachaca',60],['lime','1/2개 (조각)'],['sugar','2작은술']],
+  steps:['잔에 라임 조각과 설탕을 넣고 눌러 즙을 내요.','잘게 부순 얼음을 채우고 카샤사를 부어요.','잘 저어 섞어요.']},
+ {id:'bluehawaiian',name:'블루 하와이안',en:'Blue Hawaiian',base:'rum',glass:'highball',method:'shake',color:'#3FA9DC',garn:'cherry',cr:1,s:4,a:1,bi:0,st:2,diff:2,occ:['party'],flavor:'파인애플, 코코넛, 오렌지',
+  desc:'파란 바다 색깔의 휴양지 칵테일이에요. 블루 큐라소가 색을 내고, 파인애플과 코코넛이 달콤해요.',
+  ing:[['wrum',22.5],['curacao',22.5],['pine',90],['coco_cream',22.5]],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요. (블렌더로 갈아도 돼요)','얼음을 채운 긴 잔에 따라요.','파인애플과 체리로 장식해요.']},
+ {id:'presidente',name:'엘 프레지덴테',en:'El Presidente',base:'rum',glass:'coupe',method:'stir',color:'#E59A55',garn:'orange',s:3,a:0,bi:1,st:4,diff:2,occ:['date','before'],flavor:'럼, 오렌지, 허브',
+  desc:'1920년대 쿠바에서 대통령을 위해 만든 칵테일이에요. 럼으로 만든 맨해튼처럼 부드럽고 우아해요.',
+  ing:[['wrum',45],['dvermouth',15],['triple',7.5],['grenadine','1작은술']],
+  steps:['믹싱 글라스에 재료와 얼음을 넣고 저어요.','차가운 쿠프 잔에 걸러 따라요.','오렌지 껍질로 향을 입혀요.']},
+ {id:'tommys',name:'토미스 마르가리타',en:"Tommy's Margarita",base:'tequila',glass:'rocks',method:'shake',color:'#E4EBB8',garn:'lime',s:2,a:4,bi:0,st:3,diff:1,occ:['party','alone'],flavor:'라임, 아가베, 테킬라',
+  desc:'오렌지 리큐르 대신 아가베 시럽을 쓴 마르가리타예요. 테킬라 맛이 더 깔끔하게 살아 있어요.',
+  ing:[['tequila',60],['lime','즙 30ml'],['sugar','아가베 시럽 15ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','얼음을 넣은 잔에 걸러 따라요.','원하면 잔 테두리에 소금을 묻혀요.']},
+ {id:'oaxacaof',name:'오악사카 올드 패션드',en:'Oaxaca Old Fashioned',base:'tequila',glass:'rocks',method:'stir',color:'#C9822E',garn:'orange',s:2,a:0,bi:2,st:5,diff:2,occ:['date','after'],flavor:'스모키, 아가베, 오렌지',
+  desc:'올드 패션드를 테킬라와 메스칼로 만든 현대 클래식이에요. 메스칼의 스모키한 향이 매력이에요.',
+  ing:[['tequila','레포사도 45ml'],['mezcal',15],['sugar','아가베 시럽 1작은술'],['bitters','2방울']],
+  steps:['믹싱 글라스에 모든 재료와 얼음을 넣고 저어요.','큰 얼음을 넣은 잔에 걸러 따라요.','오렌지 껍질을 불에 살짝 그을려 향을 입히기도 해요.']},
+ {id:'nakedfamous',name:'네이키드 앤 페이머스',en:'Naked and Famous',base:'tequila',glass:'coupe',method:'shake',color:'#F2A54A',garn:'',s:3,a:3,bi:3,st:3,diff:2,occ:['date','party'],flavor:'스모키, 쌉쌀한 오렌지, 허브',
+  desc:'메스칼, 옐로 샤르트뢰즈, 아페롤, 라임을 같은 양으로 섞는 현대 칵테일이에요. 스모키함과 허브 향이 어우러져요.',
+  ing:[['mezcal',22.5],['chartreuse','옐로 22.5ml'],['aperol',22.5],['lime','즙 22.5ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','차가운 쿠프 잔에 걸러 따라요.']},
+ {id:'eldiablo',name:'엘 디아블로',en:'El Diablo',base:'tequila',glass:'highball',method:'build',color:'#8E2F4E',garn:'lime',s:3,a:2,bi:0,st:2,fz:1,diff:1,occ:['party','alone'],flavor:'블랙커런트, 생강, 라임',
+  desc:'테킬라에 블랙커런트 리큐르와 진저비어를 더한 칵테일이에요. 붉은 보랏빛이 아래로 가라앉아 예뻐요.',
+  ing:[['tequila',45],['lime','즙 15ml'],['ginger',90],['cassis',15]],
+  steps:['얼음을 채운 긴 잔에 테킬라와 라임즙을 부어요.','진저비어를 채워요.','크렘 드 카시스를 위에 천천히 부어 가라앉혀요.']},
+ {id:'batanga',name:'바탕가',en:'Batanga',base:'tequila',glass:'highball',method:'build',color:'#4A2A1A',garn:'lime',s:3,a:2,bi:1,st:2,fz:1,diff:1,occ:['party','alone'],flavor:'콜라, 라임, 소금',
+  desc:'멕시코식 테킬라 콜라예요. 잔 테두리에 소금을 묻혀서 단맛과 짠맛이 함께 느껴져요.',
+  ing:[['tequila',50],['lime','즙 15ml'],['cola',120],['salt','잔 테두리용',1]],
+  steps:['긴 잔 테두리에 소금을 묻히고 얼음을 채워요.','테킬라와 라임즙을 붓고 콜라를 채워요.','칼이나 바 스푼으로 살짝 저어요.']},
+ {id:'kamikaze',name:'카미카제',en:'Kamikaze',base:'vodka',glass:'martini',method:'shake',color:'#E9F0C5',garn:'lime',s:2,a:4,bi:0,st:4,diff:1,occ:['party'],flavor:'라임, 오렌지, 보드카',
+  desc:'보드카, 오렌지 리큐르, 라임을 같은 양으로 섞은 칵테일이에요. 파티에서는 작은 잔에 샷으로 마시기도 해요.',
+  ing:[['vodka',30],['triple',30],['lime','즙 30ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','차가운 잔에 걸러 따라요.']},
+ {id:'lemondrop',name:'레몬 드롭',en:'Lemon Drop',base:'vodka',glass:'martini',method:'shake',color:'#F7EFA1',garn:'lemon',s:3,a:4,bi:0,st:3,diff:1,occ:['party','date'],flavor:'레몬, 설탕 테두리',
+  desc:'레몬 사탕처럼 새콤달콤한 칵테일이에요. 잔 테두리에 설탕을 묻혀 마셔요.',
+  ing:[['vodka',30],['triple',20],['lemon','즙 15ml'],['sugar','시럽 10ml · 잔 테두리용 설탕']],
+  steps:['잔 테두리에 레몬즙을 바르고 설탕을 묻혀요.','셰이커에 재료와 얼음을 넣고 흔들어요.','잔에 걸러 따라요.']},
+ {id:'pornstar',name:'포른스타 마티니',en:'Pornstar Martini',base:'vodka',glass:'coupe',method:'shake',color:'#F5B84A',garn:'',s:4,a:3,bi:0,st:3,diff:2,occ:['party','date'],flavor:'패션프루트, 바닐라, 스파클링',
+  desc:'2000년대 런던에서 태어나 영국에서 가장 많이 팔리는 칵테일이 됐어요. 옆에 스파클링 와인 한 잔을 곁들이는 게 특징이에요.',
+  ing:[['vodka','바닐라 보드카 45ml'],['passion',30],['lime','즙 15ml'],['sugar','바닐라 시럽 15ml'],['bubbly','곁들이기 60ml',1]],
+  steps:['셰이커에 스파클링 와인을 뺀 재료와 얼음을 넣고 흔들어요.','쿠프 잔에 따르고 패션프루트 반쪽을 띄워요.','스파클링 와인은 작은 잔에 따로 곁들여요.']},
+ {id:'sexbeach',name:'섹스 온 더 비치',en:'Sex on the Beach',base:'vodka',glass:'highball',method:'build',color:'#F48A5C',garn:'orange',s:4,a:2,bi:0,st:2,diff:1,occ:['party'],flavor:'복숭아, 오렌지, 크랜베리',
+  desc:'1980년대 미국 휴양지에서 유행한 달콤한 칵테일이에요. 과일 주스 맛이 강해 술이 약한 사람도 즐겨요.',
+  ing:[['vodka',40],['peach',20],['oj',40],['cran',40]],
+  steps:['얼음을 채운 긴 잔에 모든 재료를 부어요.','잘 저어요.','오렌지 조각으로 장식해요.']},
+ {id:'vodkamartini',name:'보드카 마티니',en:'Vodka Martini',base:'vodka',glass:'martini',method:'stir',color:'#F3F5EC',garn:'olive',s:0,a:0,bi:1,st:5,diff:1,occ:['date','before'],flavor:'깔끔한 술맛',
+  desc:'진 대신 보드카로 만든 마티니예요. 향이 적어서 더 깔끔하고 차가운 맛이에요.',
+  ing:[['vodka',60],['dvermouth',10],['olive','1~3개',1]],
+  steps:['믹싱 글라스에 재료와 얼음을 넣고 저어요.','차가운 마티니 잔에 걸러 따라요.','올리브나 레몬 껍질로 장식해요.']},
+ {id:'blackrussian',name:'블랙 러시안',en:'Black Russian',base:'vodka',glass:'rocks',method:'build',color:'#2C1A12',garn:'',s:4,a:0,bi:1,st:4,diff:1,occ:['after','alone'],flavor:'커피, 달콤함',
+  desc:'보드카와 커피 리큐르 두 가지로 만드는 칵테일이에요. 여기에 크림을 더하면 화이트 러시안이 돼요.',
+  ing:[['vodka',50],['coffee_lq',20]],
+  steps:['얼음을 넣은 잔에 두 재료를 부어요.','살짝 저어요.']},
+ {id:'saltydog',name:'솔티 도그',en:'Salty Dog',base:'vodka',glass:'highball',method:'build',color:'#F6C9B8',garn:'',s:1,a:3,bi:2,st:2,diff:1,occ:['alone','before'],flavor:'자몽, 소금',
+  desc:'자몽 주스와 보드카에 소금 테두리를 더한 칵테일이에요. 소금이 자몽의 쓴맛을 부드럽게 해 줘요.',
+  ing:[['vodka',45],['grapefruit',120],['salt','잔 테두리용']],
+  steps:['잔 테두리에 소금을 묻히고 얼음을 채워요.','보드카와 자몽 주스를 붓고 저어요.']},
+ {id:'caipiroska',name:'카이피로스카',en:'Caipiroska',base:'vodka',glass:'rocks',method:'muddle',color:'#E3F0C5',garn:'lime',s:3,a:4,bi:0,st:3,diff:1,occ:['party','alone'],flavor:'라임, 설탕',
+  desc:'카이피리냐를 보드카로 만든 버전이에요. 더 깔끔한 맛이라 라임 향이 잘 느껴져요.',
+  ing:[['vodka',60],['lime','1/2개 (조각)'],['sugar','2작은술']],
+  steps:['잔에 라임 조각과 설탕을 넣고 눌러 즙을 내요.','잘게 부순 얼음을 채우고 보드카를 부어요.','잘 저어요.']},
+ {id:'bluelagoon',name:'블루 라군',en:'Blue Lagoon',base:'vodka',glass:'highball',method:'build',color:'#2FA6D9',garn:'lemon',s:3,a:2,bi:0,st:2,fz:1,diff:1,occ:['party'],flavor:'레몬, 오렌지, 탄산',
+  desc:'푸른 석호처럼 파란 칵테일이에요. 블루 큐라소와 레몬 탄산이 시원하고 사진이 예쁘게 나와요.',
+  ing:[['vodka',40],['curacao',20],['sprite',120]],
+  steps:['얼음을 채운 긴 잔에 보드카와 블루 큐라소를 부어요.','사이다를 채우고 살짝 저어요.','레몬 조각으로 장식해요.']},
+ {id:'alexander',name:'브랜디 알렉산더',en:'Brandy Alexander',base:'brandy',glass:'coupe',method:'shake',color:'#D9B48C',garn:'',cr:1,s:4,a:0,bi:0,st:3,diff:2,occ:['after','date'],flavor:'초콜릿, 크림, 넛맥',
+  desc:'코냑, 초콜릿 리큐르, 크림을 같은 양으로 흔든 디저트 칵테일이에요. 넛맥을 뿌려 향을 더해요.',
+  ing:[['brandy',30],['cacao',30],['cream',30],['nutmeg','조금',1]],
+  steps:['셰이커에 넛맥을 뺀 재료와 얼음을 넣고 세게 흔들어요.','차가운 쿠프 잔에 걸러 따라요.','넛맥을 갈아 뿌려요.']},
+ {id:'piscosour',name:'피스코 사워',en:'Pisco Sour',base:'brandy',glass:'coupe',method:'shake',color:'#F3EFD2',garn:'',s:2,a:4,bi:1,st:3,diff:3,occ:['before','date'],flavor:'라임, 부드러운 거품',
+  desc:'페루와 칠레의 국민 칵테일이에요. 포도 증류주 피스코에 달걀 흰자 거품을 올려 부드럽고 새콤해요.',
+  ing:[['pisco',60],['lime','즙 30ml'],['sugar','시럽 20ml'],['egg','1개분'],['bitters','몇 방울 (위에 떨어뜨리기)',1]],
+  steps:['셰이커에 비터스를 뺀 재료를 얼음 없이 먼저 흔들어 거품을 내요.','얼음을 넣고 한 번 더 흔들어요.','잔에 걸러 따르고 거품 위에 비터스를 떨어뜨려요.']},
+ {id:'jackrose',name:'잭 로즈',en:'Jack Rose',base:'brandy',glass:'coupe',method:'shake',color:'#E77F86',garn:'',s:3,a:3,bi:0,st:3,diff:2,occ:['date','before'],flavor:'사과, 석류, 라임',
+  desc:'사과 브랜디로 만드는 미국 클래식이에요. 그레나딘 덕분에 장밋빛이 돌고 새콤달콤해요.',
+  ing:[['brandy','애플 브랜디 (애플잭·칼바도스) 45ml'],['lime','즙 20ml'],['grenadine',10]],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','차가운 쿠프 잔에 걸러 따라요.']},
+ {id:'betweensheets',name:'비트윈 더 시츠',en:'Between the Sheets',base:'brandy',glass:'coupe',method:'shake',color:'#F1D9A8',garn:'lemon',s:2,a:3,bi:0,st:4,diff:2,occ:['date','after'],flavor:'오렌지, 레몬, 브랜디',
+  desc:'사이드카에 럼을 더한 클래식이에요. 이름처럼 밤에 어울리는 진한 칵테일이에요.',
+  ing:[['brandy',30],['wrum',30],['triple',30],['lemon','즙 20ml']],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','차가운 쿠프 잔에 걸러 따라요.']},
+ {id:'frenchconnection',name:'프렌치 커넥션',en:'French Connection',base:'brandy',glass:'rocks',method:'build',color:'#B6662A',garn:'',s:3,a:0,bi:0,st:4,diff:1,occ:['after','alone'],flavor:'아몬드, 코냑',
+  desc:'갓파더의 스카치를 코냑으로 바꾼 칵테일이에요. 영화 제목에서 이름을 땄어요.',
+  ing:[['brandy',35],['amaretto',35]],
+  steps:['얼음을 넣은 잔에 두 재료를 부어요.','살짝 저어요.']},
+ {id:'vieuxcarre',name:'비유 카레',en:'Vieux Carré',base:'brandy',glass:'rocks',method:'stir',color:'#A54A1E',garn:'lemon',s:2,a:0,bi:2,st:5,diff:3,occ:['date','after'],flavor:'향신료, 허브, 깊은 맛',
+  desc:'뉴올리언스 프렌치 쿼터의 이름을 딴 칵테일이에요. 라이 위스키와 코냑, 베르무트, 베네딕틴이 겹겹이 깊은 맛을 내요.',
+  ing:[['whisky','라이 위스키 30ml'],['brandy',30],['svermouth',30],['benedictine','1작은술'],['bitters','2방울']],
+  steps:['믹싱 글라스에 모든 재료와 얼음을 넣고 저어요.','큰 얼음을 넣은 잔에 걸러 따라요.','레몬 껍질이나 체리로 장식해요.']},
+ {id:'stinger',name:'스팅어',en:'Stinger',base:'brandy',glass:'rocks',method:'shake',color:'#EEE6CC',garn:'mint',s:3,a:0,bi:0,st:4,diff:1,occ:['after'],flavor:'박하, 코냑',
+  desc:'코냑에 박하 리큐르를 더한 식후 칵테일이에요. 입안이 시원하게 정리돼요.',
+  ing:[['brandy',50],['menthe','화이트 20ml']],
+  steps:['셰이커에 재료와 얼음을 넣고 흔들어요.','잘게 부순 얼음을 넣은 잔에 따라요.','민트 잎으로 장식해요.']},
+ {id:'kirroyal',name:'키르 로얄',en:'Kir Royal',base:'liqueur',glass:'flute',method:'build',color:'#B5375A',garn:'',s:3,a:2,bi:0,st:2,fz:1,diff:1,occ:['before','date','party'],flavor:'블랙커런트, 스파클링',
+  desc:'샴페인에 블랙커런트 리큐르를 더한 프랑스 식전주예요. 화이트 와인으로 만들면 "키르"라고 불러요.',
+  ing:[['cassis',10],['bubbly',90]],
+  steps:['플루트 잔에 크렘 드 카시스를 부어요.','차가운 스파클링 와인을 천천히 채워요.']},
+ {id:'bellini',name:'벨리니',en:'Bellini',base:'liqueur',glass:'flute',method:'build',color:'#F7C9A0',garn:'',s:3,a:2,bi:0,st:1,fz:1,diff:1,occ:['before','party','date'],flavor:'복숭아, 스파클링',
+  desc:'베네치아의 해리스 바에서 태어난 칵테일이에요. 하얀 복숭아 퓌레와 프로세코로 만들어 상큼하고 부드러워요.',
+  ing:[['peach_pu',50],['bubbly','프로세코 100ml']],
+  steps:['플루트 잔에 복숭아 퓌레를 넣어요.','프로세코를 천천히 부으며 살짝 저어요.']},
+ {id:'hugo',name:'휴고 스프리츠',en:'Hugo Spritz',base:'liqueur',glass:'wine',method:'build',color:'#E8F1C8',garn:'mint',s:3,a:2,bi:0,st:1,fz:1,diff:1,occ:['before','party','alone'],flavor:'엘더플라워, 민트, 라임',
+  desc:'북이탈리아에서 시작된 가벼운 스프리츠예요. 엘더플라워 꽃향기와 민트가 상쾌해 아페롤 스프리츠와 함께 인기예요.',
+  ing:[['elderflower',20],['bubbly','프로세코 90ml'],['soda',30],['mint','잎 몇 장'],['lime','조각 1~2개',1]],
+  steps:['와인 잔에 민트와 라임을 넣고 엘더플라워 리큐르를 부어요.','얼음을 채우고 프로세코와 탄산수를 부어요.','살짝 저어요.']},
+ {id:'grasshopper',name:'그래스호퍼',en:'Grasshopper',base:'liqueur',glass:'coupe',method:'shake',color:'#9BD3A0',garn:'',cr:1,s:5,a:0,bi:0,st:2,diff:1,occ:['after'],flavor:'민트 초콜릿, 크림',
+  desc:'"메뚜기"라는 이름처럼 연두색인 디저트 칵테일이에요. 민트 초코 아이스크림 같은 맛이에요.',
+  ing:[['menthe','그린 30ml'],['cacao','화이트 30ml'],['cream',30]],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 세게 흔들어요.','차가운 쿠프 잔에 걸러 따라요.']},
+ {id:'b52',name:'B-52',en:'B-52',base:'liqueur',glass:'rocks',method:'build',color:'#7A4A2A',garn:'',cr:1,s:5,a:0,bi:0,st:3,diff:2,occ:['party','after'],flavor:'커피, 크림, 오렌지',
+  desc:'세 가지 리큐르를 층층이 쌓는 샷 칵테일이에요. 작은 잔에 천천히 부어 세 줄 무늬를 만들어요.',
+  ing:[['coffee_lq',20],['irish_cream',20],['triple','그랑 마르니에 20ml']],
+  steps:['작은 샷 잔에 커피 리큐르를 먼저 부어요.','숟가락 뒷면을 대고 아이리시 크림을 천천히 올려요.','같은 방법으로 그랑 마르니에를 맨 위에 올려요.']},
+ {id:'mudslide',name:'머드슬라이드',en:'Mudslide',base:'liqueur',glass:'rocks',method:'shake',color:'#8A6248',garn:'',cr:1,s:5,a:0,bi:0,st:3,diff:1,occ:['after','party'],flavor:'커피, 초콜릿, 크림',
+  desc:'화이트 러시안에 아이리시 크림을 더한 달콤한 칵테일이에요. 아이스크림과 갈아 프로즌으로 만들기도 해요.',
+  ing:[['vodka',30],['coffee_lq',30],['irish_cream',30],['cream',30,1]],
+  steps:['셰이커에 모든 재료와 얼음을 넣고 흔들어요.','얼음을 넣은 잔에 따라요.']},
+ {id:'sbagliato',name:'네그로니 스발리아토',en:'Negroni Sbagliato',base:'liqueur',glass:'rocks',method:'build',color:'#C8452E',garn:'orange',s:3,a:1,bi:4,st:2,fz:1,diff:1,occ:['before','party'],flavor:'쌉쌀한 오렌지, 스파클링',
+  desc:'"실수한 네그로니"라는 뜻이에요. 진 대신 스파클링 와인을 넣어 가볍고 톡 쏘는 맛이에요.',
+  ing:[['campari',30],['svermouth',30],['bubbly','프로세코 30ml']],
+  steps:['얼음을 넣은 잔에 캄파리와 베르무트를 부어요.','스파클링 와인을 채우고 살짝 저어요.','오렌지 조각으로 장식해요.']},
+ {id:'garibaldi',name:'가리발디',en:'Garibaldi',base:'liqueur',glass:'highball',method:'build',color:'#F07A36',garn:'orange',s:3,a:2,bi:3,st:1,diff:1,occ:['before','alone'],flavor:'오렌지, 쌉쌀함',
+  desc:'캄파리와 오렌지 주스 두 가지로 만드는 이탈리아 식전주예요. 주스를 거품이 나게 흔들어 넣으면 더 부드러워요.',
+  ing:[['campari',45],['oj',120]],
+  steps:['얼음을 채운 긴 잔에 캄파리를 부어요.','오렌지 주스를 채우고 저어요.']},
+ {id:'virginmary',name:'버진 메리',en:'Virgin Mary',base:'none',glass:'highball',method:'build',color:'#C8341E',garn:'lemon',s:1,a:2,bi:0,st:0,diff:1,occ:['before','alone'],flavor:'토마토, 레몬, 짭짤함',
+  desc:'블러디 메리에서 술을 뺀 목테일이에요. 소금과 후추로 간을 해서 식사 전에 마시기 좋아요.',
+  ing:[['tomato',150],['lemon','즙 15ml'],['salt','소금·후추 조금']],
+  steps:['얼음을 채운 긴 잔에 토마토 주스와 레몬즙을 부어요.','소금과 후추로 간을 하고 저어요.','레몬이나 셀러리로 장식해요.']},
+ {id:'cucumbercooler',name:'오이 쿨러',en:'Cucumber Cooler',base:'none',glass:'highball',method:'muddle',color:'#CDEBC0',garn:'mint',s:2,a:3,bi:0,st:0,fz:1,diff:1,occ:['alone','before'],flavor:'오이, 라임, 민트',
+  desc:'오이와 민트를 으깨 넣은 시원한 목테일이에요. 아주 상쾌해서 더운 날에 잘 어울려요.',
+  ing:[['cucumber','3~4조각'],['lime','즙 15ml'],['sugar','시럽 15ml'],['mint','잎 몇 장'],['soda',120]],
+  steps:['잔에 오이, 민트, 라임즙, 시럽을 넣고 눌러 으깨요.','얼음을 채우고 탄산수를 부어요.','저은 뒤 오이 조각으로 장식해요.']},
+ {id:'royrogers',name:'로이 로저스',en:'Roy Rogers',base:'none',glass:'highball',method:'build',color:'#5A1E1A',garn:'cherry',s:4,a:1,bi:0,st:0,fz:1,diff:1,occ:['party','alone'],flavor:'콜라, 석류',
+  desc:'셜리 템플의 콜라 버전이에요. 콜라에 그레나딘을 더해 달콤하고 아이들도 마실 수 있어요.',
+  ing:[['cola',200],['grenadine',15],['cherry','1개',1]],
+  steps:['얼음을 채운 긴 잔에 콜라를 부어요.','그레나딘을 넣고 저어요.','칵테일 체리로 장식해요.']},
+ {id:'passionspritz',name:'패션프루트 스프리츠',en:'Passion Fruit Spritz',base:'none',glass:'wine',method:'build',color:'#F5C04A',garn:'lime',s:3,a:3,bi:0,st:0,fz:1,diff:1,occ:['party','date'],flavor:'패션프루트, 라임, 탄산',
+  desc:'패션프루트의 새콤달콤한 맛에 탄산을 더한 목테일이에요. 와인 잔에 담아 분위기를 낼 수 있어요.',
+  ing:[['passion',45],['lime','즙 15ml'],['sugar','시럽 10ml',1],['soda',100]],
+  steps:['얼음을 채운 와인 잔에 패션프루트와 라임즙을 넣어요.','탄산수를 채우고 저어요.']},
+ {id:'gingerfizz',name:'진저 라임 피즈',en:'Ginger Lime Fizz',base:'none',glass:'highball',method:'build',color:'#E9DDA0',garn:'lime',s:3,a:2,bi:0,st:0,fz:1,diff:1,occ:['alone','party'],flavor:'생강, 라임, 민트',
+  desc:'모스코 뮬에서 술을 뺀 맛이에요. 매콤한 진저비어와 라임이 시원해요.',
+  ing:[['ginger',150],['lime','즙 15ml'],['mint','잎 몇 장',1]],
+  steps:['얼음을 채운 잔에 라임즙과 민트를 넣어요.','진저비어를 채우고 살짝 저어요.']},
+ {id:'virginpaloma',name:'버진 팔로마',en:'Virgin Paloma',base:'none',glass:'highball',method:'build',color:'#F6B8A8',garn:'lime',s:2,a:3,bi:1,st:0,fz:1,diff:1,occ:['before','party'],flavor:'자몽, 라임, 소금',
+  desc:'팔로마에서 테킬라를 뺀 목테일이에요. 자몽의 쌉쌀함과 소금 테두리가 어른스러운 맛이에요.',
+  ing:[['grapefruit',90],['lime','즙 15ml'],['sugar','시럽 10ml'],['soda',60],['salt','잔 테두리용',1]],
+  steps:['잔 테두리에 소금을 묻히고 얼음을 채워요.','자몽 주스, 라임즙, 시럽을 붓고 탄산수를 채워요.','살짝 저어요.']}
 ];
 const CMAP=Object.fromEntries(COCKTAILS.map(c=>[c.id,c]));
 
 // 대표 제품 [한글 이름, 영어 이름, 가격대 1=부담 없이 2=적당히 3=좋은 걸로]
 const PRODUCTS={
- vodka:[['스미노프 No.21','Smirnoff No. 21 Vodka',1],['앱솔루트 보드카','Absolut Vodka',1],['티토스 핸드메이드','Tito\'s Handmade Vodka',2],['그레이 구스','Grey Goose Vodka',3]],
- gin:[['고든스 런던 드라이 진','Gordon\'s London Dry Gin',1],['봄베이 사파이어','Bombay Sapphire Gin',2],['탱커레이 런던 드라이','Tanqueray London Dry Gin',2],['헨드릭스','Hendrick\'s Gin',3]],
- wrum:[['바카디 카르타 블랑카','Bacardí Carta Blanca',1],['하바나 클럽 3년','Havana Club Añejo 3 Años',1],['플로르 데 카냐 4년 엑스트라 세코','Flor de Caña 4 Extra Seco',2]],
- drum:[['마이어스 오리지널 다크','Myers\'s Original Dark Rum',1],['고슬링 블랙 씰','Gosling\'s Black Seal Rum',2]],
- tequila:[['호세 쿠엘보 에스페셜 실버','Jose Cuervo Especial Silver',1],['에스폴론 블랑코','Espolòn Blanco Tequila',2],['올메카 알토스 플라타','Olmeca Altos Plata Tequila',2],['패트론 실버','Patrón Silver Tequila',3]],
- whisky:[['짐 빔 버번','Jim Beam Bourbon',1],['버팔로 트레이스','Buffalo Trace Bourbon',2],['메이커스 마크','Maker\'s Mark Bourbon',2],['불렛 라이','Bulleit Rye',2],['우드포드 리저브','Woodford Reserve Bourbon',3]],
- brandy:[['E&J VSOP','E&J VSOP Brandy',1],['헤네시 V.S','Hennessy V.S Cognac',3],['레미 마르탱 VSOP','Rémy Martin VSOP Cognac',3]],
- triple:[['드카이퍼 트리플 섹','DeKuyper Triple Sec',1],['쿠앵트로','Cointreau',2],['그랑 마르니에','Grand Marnier Cordon Rouge',3]],
- campari:[['캄파리','Campari',2]],
- aperol:[['아페롤','Aperol',2]],
- svermouth:[['마티니 로소','Martini & Rossi Rosso Vermouth',1],['친자노 로소','Cinzano Rosso Vermouth',1],['카르파노 안티카 포뮬라','Carpano Antica Formula',3]],
- dvermouth:[['마티니 엑스트라 드라이','Martini & Rossi Extra Dry Vermouth',1],['돌린 드라이','Dolin Dry Vermouth',2],['노일리 프랫 오리지널 드라이','Noilly Prat Original Dry',2]],
- coffee_lq:[['깔루아','Kahlúa Coffee Liqueur',1],['미스터 블랙','Mr Black Cold Brew Coffee Liqueur',2]],
- amaretto:[['디사론노','Disaronno Originale Amaretto',2]],
- peach:[['드카이퍼 피치트리','DeKuyper Peachtree Schnapps',1]],
- coco_rum:[['말리부','Malibu Coconut Rum',1]],
- bubbly:[['프레시넷 코르동 네그로','Freixenet Cordon Negro Brut',1],['라 마르카 프로세코','La Marca Prosecco',1],['미오네토 프로세코 브뤼','Mionetto Prosecco Brut',1]],
- tonic:[['진로 토닉워터','Jinro Tonic Water',1],['캐나다 드라이 토닉','Canada Dry Tonic Water',1],['피버트리 인디언 토닉','Fever-Tree Indian Tonic Water',2]],
- ginger:[['캐나다 드라이 진저에일','Canada Dry Ginger Ale',1],['피버트리 진저비어','Fever-Tree Ginger Beer',2]],
- bitters:[['앙고스투라 아로마틱 비터스','Angostura Aromatic Bitters',1]],
- grenadine:[['로즈 그레나딘','Rose\'s Grenadine',1]]
+ vodka:[['스미노프 No.21','Smirnoff No. 21 Vodka',1,'어디서나 구하기 쉬운 깔끔한 기본 보드카'],['앱솔루트 보드카','Absolut Vodka',1,'스웨덴 겨울밀로 만든 부드러운 보드카'],['핀란디아','Finlandia Vodka',1,'핀란드 빙하수로 만든 깨끗한 맛'],['티토스 핸드메이드','Tito\'s Handmade Vodka',2,'옥수수로 만든 미국 보드카, 살짝 단맛이 돌아요'],['케텔 원','Ketel One Vodka',2,'네덜란드 밀 보드카, 마티니에 잘 맞아요'],['벨베디어','Belvedere Vodka',3,'폴란드 호밀로 만든 고급 보드카'],['그레이 구스','Grey Goose Vodka',3,'프랑스 밀로 만든 부드러운 프리미엄 보드카']],
+ gin:[['고든스 런던 드라이 진','Gordon\'s London Dry Gin',1,'주니퍼 향이 또렷한 가성비 진'],['비피터 런던 드라이','Beefeater London Dry Gin',1,'시트러스 향이 산뜻한 클래식 런던 진'],['봄베이 사파이어','Bombay Sapphire Gin',2,'파란 병, 10가지 식물로 만든 부드러운 진'],['탱커레이 런던 드라이','Tanqueray London Dry Gin',2,'주니퍼가 힘 있는 진, 진 토닉의 정석'],['로쿠 진','Roku Gin',2,'유자·벚꽃·녹차가 들어간 일본 진'],['헨드릭스','Hendrick\'s Gin',3,'오이와 장미 향의 스코틀랜드 진'],['더 보타니스트','The Botanist Islay Dry Gin',3,'아일라 섬의 허브 22가지가 들어간 진'],['몽키 47','Monkey 47 Schwarzwald Dry Gin',3,'47가지 식물로 만든 독일 흑림 진']],
+ wrum:[['바카디 카르타 블랑카','Bacardí Carta Blanca',1,'모히토의 기본, 가볍고 깔끔한 화이트 럼'],['하바나 클럽 3년','Havana Club Añejo 3 Años',1,'쿠바식 칵테일에 잘 맞는 화이트 럼'],['플랜테레이 3 스타','Planteray 3 Stars Rum',2,'여러 카리브해 럼을 섞은 바텐더들의 인기 럼 (구 플랜테이션)'],['플로르 데 카냐 4년 엑스트라 세코','Flor de Caña 4 Extra Seco',2,'니카라과의 드라이하고 깔끔한 럼'],['디플로마티코 플라나스','Diplomático Planas Rum',2,'베네수엘라의 부드러운 화이트 럼']],
+ drum:[['마이어스 오리지널 다크','Myers\'s Original Dark Rum',1,'자메이카의 진한 당밀 향 다크 럼'],['고슬링 블랙 씰','Gosling\'s Black Seal Rum',2,'다크 앤 스토미의 원조 럼'],['애플턴 에스테이트 시그니처','Appleton Estate Signature Rum',2,'자메이카 럼 특유의 과일 향'],['마운트 게이 이클립스','Mount Gay Eclipse Rum',2,'바베이도스의 부드러운 골드 럼'],['디플로마티코 레세르바 엑스클루시바','Diplomático Reserva Exclusiva',3,'캐러멜처럼 달콤한 숙성 럼, 그냥 마셔도 좋아요']],
+ tequila:[['호세 쿠엘보 에스페셜 실버','Jose Cuervo Especial Silver',1,'가장 구하기 쉬운 데일리 테킬라'],['에스폴론 블랑코','Espolòn Blanco Tequila',2,'해골 그림 라벨, 100% 아가베의 가성비 테킬라'],['올메카 알토스 플라타','Olmeca Altos Plata Tequila',2,'바텐더들이 만든 칵테일용 테킬라'],['카사미고스 블랑코','Casamigos Blanco Tequila',3,'부드럽고 달콤한 인기 테킬라'],['패트론 실버','Patrón Silver Tequila',3,'벌 모양 병마개의 프리미엄 테킬라'],['돈 훌리오 블랑코','Don Julio Blanco Tequila',3,'깔끔하고 시트러스 향이 나는 고급 테킬라']],
+ whisky:[['짐 빔 버번','Jim Beam Bourbon',1,'세계에서 가장 많이 팔리는 버번 중 하나'],['잭 다니엘 올드 넘버 7','Jack Daniel\'s Old No. 7',1,'숯으로 걸러 부드러운 테네시 위스키'],['와일드 터키 101','Wild Turkey 101 Bourbon',2,'도수가 높아 칵테일에서도 맛이 살아 있어요'],['버팔로 트레이스','Buffalo Trace Bourbon',2,'바닐라·캐러멜 향의 균형 좋은 버번'],['메이커스 마크','Maker\'s Mark Bourbon',2,'빨간 밀랍 봉인, 밀이 들어가 부드러운 버번'],['불렛 라이','Bulleit Rye',2,'향신료 향이 살아 있는 라이 위스키, 맨해튼에 좋아요'],['리튼하우스 라이','Rittenhouse Rye',2,'사제락, 맨해튼용으로 바텐더들이 즐겨 쓰는 라이'],['우드포드 리저브','Woodford Reserve Bourbon',3,'풍부하고 부드러운 프리미엄 버번']],
+ scotch:[['듀어스 화이트 라벨','Dewar\'s White Label',1,'부드러운 블렌디드 스카치, 하이볼에 좋아요'],['조니 워커 블랙 라벨','Johnnie Walker Black Label',2,'살짝 스모키한 대표 블렌디드 스카치'],['몽키 숄더','Monkey Shoulder',2,'몰트만 섞은 칵테일 친화적인 스카치'],['글렌피딕 12년','Glenfiddich 12 Year Old',3,'배 향이 나는 싱글 몰트'],['라프로익 10년','Laphroaig 10 Year Old',3,'아일라의 강한 피트·스모키 향, 페니실린 위에 띄워요']],
+ brandy:[['E&J VSOP','E&J VSOP Brandy',1,'미국 캘리포니아의 가성비 브랜디'],['피에르 페랑 1840','Pierre Ferrand 1840 Original Formula Cognac',2,'칵테일용으로 만든 진한 코냑'],['레어즈 애플잭','Laird\'s Applejack',2,'미국 애플 브랜디, 잭 로즈의 정석'],['크리스티앙 드루앵 칼바도스','Christian Drouin Calvados Pays d\'Auge',2,'프랑스 노르망디 사과 브랜디'],['헤네시 V.S','Hennessy V.S Cognac',3,'세계적으로 유명한 코냑'],['레미 마르탱 VSOP','Rémy Martin VSOP Cognac',3,'과일 향이 풍부한 부드러운 코냑']],
+ pisco:[['카펠 피스코 리저바도','Capel Pisco Reservado',1,'칠레식 피스코, 가볍고 과일 향'],['피스코 포르톤','Pisco Portón',2,'페루식 피스코, 꽃향기가 풍부해요'],['바솔 프리메로 케브란타','BarSol Primero Quebranta Pisco',2,'페루 전통 품종으로 만든 피스코 사워용']],
+ cachaca:[['이피오카 프라타','Ypióca Prata Cachaça',1,'브라질의 대중적인 카샤사'],['레블롱','Leblon Cachaça',2,'부드러운 카이피리냐용 카샤사'],['노보 포구','Novo Fogo Silver Cachaça',2,'유기농 사탕수수로 만든 카샤사']],
+ mezcal:[['400 코네호스','400 Conejos Mezcal Espadín',1,'부드러운 스모키함의 입문용 메스칼'],['델 마게이 비다','Del Maguey Vida Mezcal',2,'칵테일용으로 가장 많이 쓰는 메스칼'],['몬테로보스 에스파딘','Montelobos Mezcal Espadín',2,'유기농 아가베로 만든 균형 좋은 메스칼']],
+ triple:[['드카이퍼 트리플 섹','DeKuyper Triple Sec',1,'저렴하고 달콤한 오렌지 리큐르'],['쿠앵트로','Cointreau',2,'마르가리타·코스모폴리탄의 표준 오렌지 리큐르'],['피에르 페랑 드라이 큐라소','Pierre Ferrand Dry Curaçao',2,'덜 달고 향이 깊은 오렌지 리큐르, 마이타이에 좋아요'],['그랑 마르니에','Grand Marnier Cordon Rouge',3,'코냑 베이스의 고급 오렌지 리큐르']],
+ curacao:[['볼스 블루 큐라소','Bols Blue Curaçao',1,'파란 칵테일의 기본 리큐르'],['드카이퍼 블루 큐라소','DeKuyper Blue Curaçao',1,'오렌지 향의 파란 리큐르']],
+ campari:[['캄파리','Campari',2,'쌉쌀한 붉은 이탈리아 리큐르, 네그로니의 핵심']],
+ aperol:[['아페롤','Aperol',2,'캄파리보다 덜 쓰고 가벼운 오렌지빛 리큐르']],
+ svermouth:[['마티니 로소','Martini & Rossi Rosso Vermouth',1,'가장 구하기 쉬운 스위트 베르무트'],['친자노 로소','Cinzano Rosso Vermouth',1,'허브 향이 가벼운 스위트 베르무트'],['코키 스토리코 베르무트 디 토리노','Cocchi Storico Vermouth di Torino',2,'코코아·오렌지 향의 진한 베르무트'],['카르파노 안티카 포뮬라','Carpano Antica Formula',3,'바닐라 향이 진한 고급 베르무트, 맨해튼에 좋아요']],
+ dvermouth:[['마티니 엑스트라 드라이','Martini & Rossi Extra Dry Vermouth',1,'마티니용 기본 드라이 베르무트'],['돌린 드라이','Dolin Dry Vermouth',2,'가볍고 섬세한 프랑스 베르무트'],['노일리 프랫 오리지널 드라이','Noilly Prat Original Dry',2,'숙성 향이 있는 클래식 드라이 베르무트']],
+ lillet:[['릴레 블랑','Lillet Blanc',2,'꿀과 오렌지 향의 프랑스 와인 아페리티프'],['코키 아메리카노','Cocchi Americano',2,'살짝 쌉쌀한 이탈리아 아페리티프, 베스퍼에 잘 맞아요']],
+ coffee_lq:[['깔루아','Kahlúa Coffee Liqueur',1,'가장 유명한 달콤한 커피 리큐르'],['티아 마리아','Tia Maria Coffee Liqueur',1,'바닐라 향이 나는 커피 리큐르'],['미스터 블랙','Mr Black Cold Brew Coffee Liqueur',2,'덜 달고 커피 맛이 진해 에스프레소 마티니에 좋아요']],
+ irish_cream:[['베일리스 오리지널','Baileys Original Irish Cream',1,'아이리시 위스키와 크림의 달콤한 리큐르'],['캐롤란스','Carolans Irish Cream',1,'꿀 향이 나는 부드러운 아이리시 크림']],
+ amaretto:[['디사론노','Disaronno Originale Amaretto',2,'사각 병의 대표 아마레토'],['라차로니 아마레토','Lazzaroni Amaretto',2,'아마레티 쿠키로 만든 고소한 아마레토']],
+ peach:[['드카이퍼 피치트리','DeKuyper Peachtree Schnapps',1,'퍼지 네이블의 기본 복숭아 리큐르'],['아처스 피치 슈냅스','Archers Peach Schnapps',1,'가볍고 달콤한 복숭아 리큐르']],
+ coco_rum:[['말리부','Malibu Coconut Rum',1,'하얀 병의 코코넛 럼, 파인애플 주스와 찰떡']],
+ bubbly:[['프레시넷 코르동 네그로','Freixenet Cordon Negro Brut',1,'칵테일에 쓰기 좋은 가성비 카바'],['라 마르카 프로세코','La Marca Prosecco',1,'스프리츠·벨리니에 잘 맞는 프로세코'],['미오네토 프로세코 브뤼','Mionetto Prosecco Brut',1,'상큼하고 드라이한 프로세코'],['모엣 샹동 임페리얼 브뤼','Moët & Chandon Impérial Brut',3,'특별한 날 프렌치 75·키르 로얄용 샴페인']],
+ chartreuse:[['샤르트뢰즈 그린','Chartreuse Green',3,'130가지 허브로 수도사들이 만드는 강렬한 리큐르'],['샤르트뢰즈 옐로','Chartreuse Yellow',3,'그린보다 달고 부드러운 꿀·허브 리큐르']],
+ maraschino:[['룩사르도 마라스키노','Luxardo Maraschino Originale',2,'짚으로 싼 병, 체리 씨 향의 클래식 리큐르'],['마라스카 마라스키노','Maraska Maraschino',2,'크로아티아산 체리 리큐르']],
+ absinthe:[['허브세인트','Herbsaint',1,'뉴올리언스의 아니스 리큐르, 사제락에 많이 써요'],['페르노 압생트','Pernod Absinthe',2,'아니스와 허브 향의 프랑스 압생트'],['세인트 조지 압생트 베르트','St. George Absinthe Verte',3,'미국 크래프트 압생트']],
+ elderflower:[['생제르맹','St-Germain Elderflower Liqueur',2,'우아한 꽃 모양 병의 엘더플라워 리큐르'],['세인트 엘더','St. Elder Elderflower Liqueur',1,'가성비 엘더플라워 리큐르']],
+ drambuie:[['드람부이','Drambuie',2,'스카치에 꿀과 허브를 더한 리큐르']],
+ amaro:[['아마로 노니노 퀸테센시아','Amaro Nonino Quintessentia',3,'오렌지 향의 부드러운 아마로, 페이퍼 플레인의 정석'],['아마로 몬테네그로','Amaro Montenegro',2,'장미·오렌지 향의 가벼운 아마로'],['아베르나','Averna Amaro Siciliano',2,'캐러멜 향의 시칠리아 아마로']],
+ benedictine:[['베네딕틴 D.O.M.','Bénédictine D.O.M.',2,'꿀과 허브의 프랑스 리큐르']],
+ cacao:[['드카이퍼 크렘 드 카카오 화이트','DeKuyper Crème de Cacao White',1,'투명한 초콜릿 리큐르'],['템퍼스 푸깃 크렘 드 카카오','Tempus Fugit Crème de Cacao',2,'진짜 카카오 향의 고급 리큐르']],
+ menthe:[['드카이퍼 크렘 드 망트 그린','DeKuyper Crème de Menthe Green',1,'그래스호퍼용 초록 박하 리큐르'],['지파르 망트 파스티유','Giffard Menthe-Pastille',2,'투명하고 상쾌한 박하 리큐르']],
+ cassis:[['드카이퍼 크렘 드 카시스','DeKuyper Crème de Cassis',1,'가성비 블랙커런트 리큐르'],['르제 크렘 드 카시스','Lejay Crème de Cassis de Dijon',2,'키르의 고향 디종의 카시스'],['지파르 크렘 드 카시스','Giffard Crème de Cassis',2,'진한 블랙커런트 리큐르']],
+ soda:[['트레비','Lotte Trevi Sparkling Water',1,'한국 마트에서 쉽게 사는 탄산수'],['페리에','Perrier Sparkling Water',1,'탄산이 강한 프랑스 탄산수'],['산펠레그리노','San Pellegrino Sparkling Water',1,'부드러운 탄산의 이탈리아 탄산수'],['피버트리 소다 워터','Fever-Tree Soda Water',2,'칵테일용으로 만든 탄산수']],
+ tonic:[['진로 토닉워터','Jinro Tonic Water',1,'한국에서 가장 흔한 토닉워터, 단맛이 있어요'],['캐나다 드라이 토닉','Canada Dry Tonic Water',1,'미국 마트의 기본 토닉'],['슈웹스 토닉','Schweppes Indian Tonic Water',1,'쓴맛이 또렷한 클래식 토닉'],['피버트리 인디언 토닉','Fever-Tree Indian Tonic Water',2,'덜 달고 깔끔한 프리미엄 토닉'],['피버트리 메디터레이니언 토닉','Fever-Tree Mediterranean Tonic Water',2,'허브 향이 가벼운 토닉, 꽃향기 진과 좋아요']],
+ ginger:[['캐나다 드라이 진저에일','Canada Dry Ginger Ale',1,'부드럽고 달콤한 진저에일'],['슈웹스 진저에일','Schweppes Ginger Ale',1,'가볍게 톡 쏘는 진저에일'],['고슬링 진저비어','Gosling\'s Ginger Beer',1,'다크 앤 스토미용 진저비어'],['피버트리 진저비어','Fever-Tree Ginger Beer',2,'생강 맛이 매콤한 프리미엄 진저비어'],['분다버그 진저비어','Bundaberg Ginger Beer',2,'호주의 진하고 달콤한 진저비어']],
+ sprite:[['칠성사이다','Chilsung Cider',1,'한국의 대표 레몬라임 탄산음료'],['스프라이트','Sprite',1,'레몬라임 탄산음료'],['세븐업','7UP',1,'레몬라임 탄산음료']],
+ cola:[['코카콜라','Coca-Cola',1,'쿠바 리브레·롱 아일랜드의 기본'],['펩시','Pepsi',1,'조금 더 달콤한 콜라']],
+ oj:[['트로피카나 오렌지 주스','Tropicana Orange Juice',1,'과육 없는 100% 오렌지 주스가 칵테일에 편해요']],
+ cran:[['오션 스프레이 크랜베리','Ocean Spray Cranberry Juice Cocktail',1,'코스모폴리탄·시 브리즈의 기본']],
+ pine:[['돌 파인애플 주스','Dole Pineapple Juice',1,'피냐 콜라다·페인킬러용 파인애플 주스']],
+ grapefruit:[['트로피카나 자몽 주스','Tropicana Ruby Red Grapefruit Juice',1,'팔로마·솔티 도그용 자몽 주스']],
+ tomato:[['캠벨 토마토 주스','Campbell\'s Tomato Juice',1,'블러디 메리용 토마토 주스']],
+ passion:[['모닌 패션프루트 시럽','Monin Passion Fruit Syrup',1,'구하기 쉬운 패션프루트 시럽'],['브아롱 패션프루트 퓌레','Boiron Passion Fruit Purée',2,'바에서 쓰는 냉동 패션프루트 퓌레']],
+ peach_pu:[['브아롱 화이트 피치 퓌레','Boiron White Peach Purée',2,'벨리니에 쓰는 하얀 복숭아 퓌레']],
+ grenadine:[['로즈 그레나딘','Rose\'s Grenadine',1,'가장 흔한 붉은 그레나딘 시럽'],['모닌 그레나딘','Monin Grenadine Syrup',1,'석류 향이 나는 그레나딘'],['리버 앤 코 그레나딘','Liber & Co. Real Grenadine',2,'진짜 석류로 만든 그레나딘']],
+ bitters:[['앙고스투라 아로마틱 비터스','Angostura Aromatic Bitters',1,'노란 뚜껑, 올드 패션드의 필수품'],['페이쇼드 비터스','Peychaud\'s Aromatic Bitters',1,'사제락에 쓰는 붉은 비터스'],['리건스 오렌지 비터스 No.6','Regans\' Orange Bitters No. 6',1,'마티니에 쓰는 오렌지 비터스']],
+ orgeat:[['모닌 아몬드(오르쟈) 시럽','Monin Almond (Orgeat) Syrup',1,'마이타이용 아몬드 시럽'],['지파르 오르쟈','Giffard Orgeat Syrup',2,'꽃물 향이 나는 프랑스 오르쟈'],['스몰 핸드 푸드 오르쟈','Small Hand Foods Orgeat',2,'진짜 아몬드로 만든 오르쟈']],
+ sugar:[['모닌 퓨어 케인 시럽','Monin Pure Cane Syrup',1,'설탕 녹일 필요 없이 바로 쓰는 시럽']],
+ coco_cream:[['코코 로페스','Coco López Cream of Coconut',1,'피냐 콜라다를 만든 달콤한 코코넛 크림']],
+ cherry:[['룩사르도 마라스키노 체리','Luxardo Maraschino Cherries',2,'진한 시럽에 절인 고급 칵테일 체리']]
 };
 const TIER={1:'부담 없이',2:'적당히',3:'좋은 걸로'};
 
@@ -1499,7 +1834,7 @@ function bindCardActions(root){(root||view).querySelectorAll('[data-rec]').forEa
 
 function prodBlock(ids){
   const groups=ids.filter(id=>PRODUCTS[id]).slice(0,3);if(!groups.length)return '';
-  return groups.map(id=>{const list=PRODUCTS[id];return `<div class="prods"><div class="prods-h">🛒 ${esc(ING[id].n)} 이런 제품을 찾아보세요 <span>${list.length}개</span></div>${list.map(x=>`<div class="prod"><div class="pn"><b>${esc(x[0])}</b><small>${esc(x[1])}</small></div><div class="pr"><span class="tier t${x[2]}">${TIER[x[2]]}</span><a href="https://www.google.com/search?q=${encodeURIComponent(x[1])}" target="_blank" rel="noopener">검색 ↗</a></div></div>`).join('')}</div>`;}).join('')+`<div class="prods-note" style="margin:-4px 2px 10px">가게마다 없을 수 있고 가격은 달라요. 영어 이름을 직원에게 보여 주면 찾기 쉬워요.</div>`;
+  return groups.map(id=>{const list=PRODUCTS[id];return `<div class="prods"><div class="prods-h">🛒 ${esc(ING[id].n)} 이런 제품을 찾아보세요 <span>${list.length}개</span></div>${list.map(x=>`<div class="prod"><div class="pn"><b>${esc(x[0])}</b><small>${esc(x[1])}</small>${x[3]?`<small class="nt">${esc(x[3])}</small>`:''}</div><div class="pr"><span class="tier t${x[2]}">${TIER[x[2]]}</span><a href="https://www.google.com/search?q=${encodeURIComponent(x[1])}" target="_blank" rel="noopener">검색 ↗</a></div></div>`).join('')}</div>`;}).join('')+`<div class="prods-note" style="margin:-4px 2px 10px">가게마다 없을 수 있고 가격은 달라요. 영어 이름을 직원에게 보여 주면 찾기 쉬워요.</div>`;
 }
 function openRecipe(id){
   const c=CMAP[id];if(!c)return;const have=inv();const showHave=have.size>0;const miss=missingOf(c,have);
@@ -1788,6 +2123,118 @@ function openRecord(id,styleId){
   });
 }
 
+/* ---------- 검색 ---------- */
+const BASE_WORDS={vodka:'보드카 vodka',gin:'진 gin 런던드라이',rum:'럼 rum 바카디',tequila:'테킬라 데킬라 tequila 메스칼 mezcal 아가베',whisky:'위스키 whisky whiskey 버번 bourbon 스카치 scotch 라이 rye',brandy:'브랜디 brandy 코냑 cognac 피스코 pisco 칼바도스',liqueur:'리큐르 liqueur 와인 wine 스파클링 샴페인 프로세코',none:'무알코올 무알콜 논알콜 목테일 mocktail nonalcoholic 술없이'};
+const C_ALIAS={gintonic:'진토닉 gt 지티',cubalibre:'럼콕 럼앤콕 rumcoke',longisland:'롱티 롱아일랜드 lit',moscowmule:'뮬 mule',highball:'하이볼 위스키하이볼',jackcoke:'잭콕 위스키콕 버번콕 jackdaniels',screwdriver:'스크류',cosmo:'코스모',margarita:'마가리타 마르게리타',pinacolada:'피나콜라다',aperolspritz:'스프리츠 spritz',espressomartini:'에스프레소마티니',whitelady:'화이트레이디',kirroyal:'키르 kir',b52:'b52 비52 샷 shot',kamikaze:'카미카제 샷 shot',corpse2:'콥스리바이버',oaxacaof:'오악사카',nakedfamous:'네이키드앤페이머스'};
+const nrm=s=>String(s==null?'':s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[\s\-·'’.,()\/&!?"“”:#+]/g,'');
+const SR_ATTR=[
+ ['taste','sweet',['달콤','달달','단맛','단','스위트','sweet']],['taste','acid',['상큼','새콤','산뜻','시큼','신맛','sour']],
+ ['taste','bitter',['쓴','쌉쌀','쌉싸름','씁쓸','쓴맛','bitter']],['taste','strong',['독한','센','강한','높은','진한','strong']],
+ ['taste','light',['약한','순한','가벼운','낮은','light']],['taste','fizz',['탄산','청량','시원','톡쏘는','fizzy']],['taste','cream',['크리미','크림','부드러운','creamy']],
+ ['nonalc',1,['무알코올','무알콜','논알콜','논알코올','목테일','mocktail','술없이']],
+ ['easy',1,['쉬운','간단','초보','쉽게','easy']],
+ ['occ','alone',['혼술','혼자']],['occ','date',['데이트','기념일','분위기']],['occ','party',['파티','모임','party']],['occ','before',['식전','식사전','아페리티프']],['occ','after',['식후','디저트','식사후','디제스티프']],
+ ['method','shake',['셰이크','쉐이크','셰이커','shake','shaken']],['method','stir',['스터','젓는','stir','stirred']],['method','build',['빌드','build']],['method','muddle',['머들','muddle']],['method','blend',['블렌드','블렌더','갈아','frozen','프로즌']],
+ ['noop',0,['도수','맛','칵테일','cocktail','추천']]
+].map(a=>[a[0],a[1],a[2].map(nrm)]);
+const TASTE_OK={sweet:c=>c.s>=4,acid:c=>c.a>=4,bitter:c=>c.bi>=3,strong:c=>c.st>=4,light:c=>c.st<=2,fizz:c=>!!c.fz,cream:c=>!!c.cr};
+let SRIDX=null,SRQ='';
+const ingTxt=id=>{const g=ING[id];return g?g.n+' '+g.en:'';};
+function buildSearchIndex(){
+  const cocktails=COCKTAILS.map(c=>({c,nm:nrm(c.name+' '+c.en),ix:nrm([c.name,c.en,c.flavor,c.desc,BASES[c.base].label,BASE_WORDS[c.base],GLASS[c.glass],C_ALIAS[c.id]||'',c.ing.map(x=>ingTxt(x[0])).join(' '),c.ing.map(x=>(PRODUCTS[x[0]]||[]).map(p=>p[1]).join(' ')).join(' ')].join(' '))}));
+  const ings=Object.keys(ING).map(id=>({id,g:ING[id],nm:nrm(ING[id].n+' '+ING[id].en),uses:COCKTAILS.filter(c=>c.ing.some(x=>x[0]===id))})).filter(x=>x.uses.length||PRODUCTS[x.id]);
+  const prods=[];Object.keys(PRODUCTS).forEach(id=>PRODUCTS[id].forEach(p=>prods.push({p,id,nm:nrm(p[0]+' '+p[1]),ix:nrm([p[0],p[1],p[3],ingTxt(id)].join(' '))})));
+  const strip=h=>String(h).replace(/<[^>]+>/g,' ');
+  const learn=[];LEVELS.forEach(l=>l.cards.forEach((c,i)=>learn.push({l,i,c,ix:nrm([c.k,c.t,strip(c.b),strip(c.tip||'')].join(' '))})));
+  SRIDX={cocktails,ings,prods,learn};
+}
+function parseQuery(q){
+  const toks=q.trim().split(/\s+/).filter(Boolean),attrs=[],texts=[];
+  toks.forEach(tk=>{const n=nrm(tk);if(!n)return;let hit=null;
+    for(const a of SR_ATTR){if(a[2].some(wd=>n===wd||(wd.length>=2&&n.startsWith(wd)&&a[0]!=='method')||(a[0]==='method'&&n.startsWith(wd)&&wd.length>=3))){hit=a;break;}}
+    if(hit){if(hit[0]!=='noop')attrs.push(hit);}else texts.push(n);});
+  return {attrs,texts,noop:toks.length>0};
+}
+const cOk=(c,attrs)=>attrs.every(([k,v])=>k==='taste'?TASTE_OK[v](c):k==='nonalc'?c.base==='none':k==='easy'?c.diff===1:k==='occ'?c.occ.includes(v):k==='method'?c.method===v:true);
+function runSearch(q){
+  if(!SRIDX)buildSearchIndex();
+  const {attrs,texts}=parseQuery(q);if(!attrs.length&&!texts.length)return q.trim()?{cocktails:[],ings:[],prods:[],learn:[],recs:[]}:null;
+  const tm=ix=>texts.every(t=>ix.includes(t));
+  const score=nm=>texts.length?(nm.startsWith(texts[0])?3:nm.includes(texts[0])?2:0):0;
+  const cocktails=SRIDX.cocktails.filter(x=>tm(x.ix)&&cOk(x.c,attrs)).sort((a,b)=>score(b.nm)-score(a.nm));
+  const ings=texts.length&&!attrs.length?SRIDX.ings.filter(x=>texts.every(t=>x.nm.includes(t))):[];
+  const prods=texts.length&&!attrs.length?SRIDX.prods.filter(x=>tm(x.ix)).sort((a,b)=>score(b.nm)-score(a.nm)||a.p[2]-b.p[2]):[];
+  const learn=texts.length&&!attrs.length?SRIDX.learn.filter(x=>tm(x.ix)):[];
+  const recs=texts.length?store.get('records',[]).filter(r=>tm(nrm([r.name,r.memo,r.place,(CMAP[r.style]||{}).name,(CMAP[r.style]||{}).en].join(' ')))):[];
+  return {cocktails,ings,prods,learn,recs};
+}
+const SR_SUGGEST=['진토닉','마르가리타','보드카','진저에일','상큼한','달콤한','무알코올','쉬운','데이트','Bombay Sapphire'];
+const srIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
+const extLinks=q=>`<div class="sr-ext"><a class="btn ghost" href="https://www.google.com/search?q=${encodeURIComponent(q+' cocktail recipe')}" target="_blank" rel="noopener">구글에서 레시피 ↗</a><a class="btn ghost" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q+' cocktail')}" target="_blank" rel="noopener">유튜브 영상 ↗</a></div>`;
+const cRow=c=>`<button class="sr-row" data-k="c:${c.id}"><span class="g">${cglass(c,24)}</span><span class="tx"><b>${esc(c.name)}</b><small>${esc(c.en)} · ${BASES[c.base].label} · ${esc(c.flavor)}</small></span>${chev}</button>`;
+function openSearch(){openSheet(`<div id="srWrap"></div>`,s=>{s.querySelector('.sheet').classList.add('tall');srHome(s);});}
+function srHome(s){
+  const wrap=s.querySelector('#srWrap');
+  wrap.innerHTML=`<h2 style="margin-top:4px">칵테일 찾기</h2>
+   <div class="sr-box">${srIcon}<input type="search" id="srQ" placeholder="칵테일, 재료, 술 브랜드, 맛으로 찾기" autocomplete="off" enterkeyhint="search" value="${esc(SRQ)}"></div>
+   <div id="srRes"></div>`;
+  const inp=wrap.querySelector('#srQ'),res=wrap.querySelector('#srRes');let tmr=null,more=20;
+  const draw=()=>{
+    const q=inp.value;SRQ=q;const r=runSearch(q);
+    if(!r){res.innerHTML=`<div class="sr-hint">이렇게 찾아보세요</div><div class="sr-chips">${SR_SUGGEST.map(x=>`<button type="button" data-q="${esc(x)}">${esc(x)}</button>`).join('')}</div>
+      <p class="small muted" style="margin-top:14px">한글·영어 모두 돼요. 칵테일 이름, 재료(라임, 토닉), 술 브랜드(앱솔루트, 탱커레이), 맛(상큼한, 쌉쌀한, 도수 낮은), 자리(데이트, 파티)로 찾을 수 있어요. 여러 단어를 섞어도 돼요. 예: <b>진 상큼한</b></p>`;
+      res.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{inp.value=b.dataset.q;more=20;draw();});return;}
+    const n=r.cocktails.length+r.ings.length+r.prods.length+r.learn.length+r.recs.length;
+    let h='';
+    if(!n){res.innerHTML=`<div class="sr-empty"><b>"${esc(q)}"</b>에 맞는 칵테일이 앱에 없어요.<br>아래에서 더 찾아볼 수 있어요.</div>`+extLinks(q);return;}
+    if(r.cocktails.length)h+=`<div class="sr-sec"><h3>칵테일 <span>${r.cocktails.length}</span></h3>${r.cocktails.slice(0,more).map(x=>cRow(x.c)).join('')}${r.cocktails.length>more?`<button class="btn ghost block" id="srMore" style="margin-top:8px">칵테일 더 보기 (${r.cocktails.length-more}개 더)</button>`:''}</div>`;
+    if(r.ings.length)h+=`<div class="sr-sec"><h3>재료 <span>${r.ings.length}</span></h3>${r.ings.map(x=>`<button class="sr-row" data-k="i:${x.id}"><span class="g">${ING_ICON[x.g.g]||'•'}</span><span class="tx"><b>${esc(x.g.n)}</b><small>${esc(x.g.en)} · 칵테일 ${x.uses.length}가지에 들어가요</small></span>${chev}</button>`).join('')}</div>`;
+    if(r.prods.length)h+=`<div class="sr-sec"><h3>제품 <span>${r.prods.length}</span></h3>${r.prods.slice(0,20).map(x=>`<button class="sr-row" data-k="p:${SRIDX.prods.indexOf(x)}"><span class="g">${ING_ICON[ING[x.id].g]||'🛒'}</span><span class="tx"><b>${esc(x.p[0])}</b><small><i>${esc(x.p[1])}</i></small><small>${esc(ING[x.id].n)}</small></span><span class="tier t${x.p[2]}">${TIER[x.p[2]]}</span></button>`).join('')}</div>`;
+    if(r.learn.length)h+=`<div class="sr-sec"><h3>배우기 카드 <span>${r.learn.length}</span></h3>${r.learn.map(x=>`<button class="sr-row" data-k="l:${x.l.id}:${x.i}"><span class="g lv">${x.l.name}</span><span class="tx"><b>${esc(x.c.t)}</b><small>${esc(x.c.k)}</small></span>${chev}</button>`).join('')}</div>`;
+    if(r.recs.length)h+=`<div class="sr-sec"><h3>내 기록 <span>${r.recs.length}</span></h3>${r.recs.map(x=>`<button class="sr-row" data-k="r:${esc(x.id)}"><span class="g">🍸</span><span class="tx"><b>${esc(x.name)}</b><small class="stars">${stars(x.rating||0)}</small></span>${chev}</button>`).join('')}</div>`;
+    h+=`<div class="sr-foot">찾는 칵테일이 없나요?</div>`+extLinks(q);
+    res.innerHTML=h;
+    const mb=res.querySelector('#srMore');if(mb)mb.onclick=()=>{more+=40;draw();};
+    res.querySelectorAll('.sr-row').forEach(b=>b.onclick=()=>srOpen(s,b.dataset.k));
+  };
+  inp.addEventListener('input',()=>{clearTimeout(tmr);more=20;tmr=setTimeout(draw,120);});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();inp.blur();}});
+  draw();
+  if(!SRQ)setTimeout(()=>{try{inp.focus();}catch(e){}},250);
+}
+const ING_ICON={base:'🥃',liq:'🍶',mix:'🫧',fresh:'🍋',pantry:'🧂'};
+function srOpen(s,k){
+  const [kind,a,b]=k.split(':');
+  if(kind==='c'){openRecipe(a);return;}
+  if(kind==='l'){closeSheet();S.level=a;store.set('level',a);LQ=null;go('learn');setTimeout(()=>{const el=$('#lc'+b);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},350);return;}
+  if(kind==='r'){closeSheet();openRecord(a);return;}
+  const wrap=s.querySelector('#srWrap'),sh=s.querySelector('.sheet');
+  const back=`<button class="back sr-back" id="srBack"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg>검색 결과</button>`;
+  const ingId=kind==='i'?a:SRIDX.prods[+a].id,g=ING[ingId];
+  const uses=COCKTAILS.filter(c=>c.ing.some(x=>x[0]===ingId));
+  const have=inv().has(ingId);
+  const usesH=uses.length?`<h3 style="margin-top:16px">이 재료가 들어가는 칵테일 <span class="muted small" style="font-weight:400">${uses.length}가지</span></h3>${uses.map(cRow).join('')}`:'';
+  const invBtn=`<button class="btn soft block" id="srInv" style="margin-top:10px">${have?'홈바에 있어요 ✓':'홈바에 넣기'}</button>`;
+  if(kind==='p'){
+    const p=SRIDX.prods[+a].p;
+    wrap.innerHTML=back+`<div class="card" style="margin-top:4px"><h2 style="margin:0;font-size:20px">${esc(p[0])}</h2><div class="enn" style="margin:2px 0 8px">${esc(p[1])}</div>
+     <span class="chip">${esc(g.n)}</span><span class="tier t${p[2]}">${TIER[p[2]]}</span>
+     <p style="margin:10px 0 0;font-size:16px">${esc(p[3])}</p>
+     <div class="ask">🗣️ 가게에서: "<b>${esc(p[1])}</b> 있나요?" 영어 이름을 보여 주면 찾기 쉬워요.</div>
+     <div class="sr-ext"><a class="btn ghost" href="https://www.google.com/search?q=${encodeURIComponent(p[1])}" target="_blank" rel="noopener">구글에서 찾기 ↗</a></div>${invBtn}
+     <p class="small muted" style="margin:10px 0 0">가게마다 없을 수 있고 가격은 달라요.</p></div>${usesH}`;
+  }else{
+    const list=PRODUCTS[ingId]||[];
+    wrap.innerHTML=back+`<div class="card" style="margin-top:4px"><h2 style="margin:0;font-size:20px">${ING_ICON[g.g]||''} ${esc(g.n)}</h2><div class="enn" style="margin:2px 0 8px">${esc(g.en)}</div>${invBtn}
+     ${list.length?`<div class="prods"><div class="prods-h">🛒 이런 제품을 찾아보세요 <span>${list.length}개</span></div>${list.map((x,i)=>`<button class="prod sr-pl" data-pi="${SRIDX.prods.findIndex(y=>y.p===x)}"><div class="pn"><b>${esc(x[0])}</b><small>${esc(x[3]||x[1])}</small></div><div class="pr"><span class="tier t${x[2]}">${TIER[x[2]]}</span></div></button>`).join('')}</div>`:''}</div>${usesH}`;
+    wrap.querySelectorAll('.sr-pl').forEach(el=>el.onclick=()=>srOpen(s,'p:'+el.dataset.pi));
+  }
+  wrap.querySelectorAll('.sr-row').forEach(el=>el.onclick=()=>srOpen(s,el.dataset.k));
+  const ib=wrap.querySelector('#srInv');ib.onclick=()=>{const cur=new Set(store.get('inv',[]));if(cur.has(ingId))return;cur.add(ingId);store.set('inv',[...cur]);ib.textContent='홈바에 있어요 ✓';toast(`${g.n}을(를) 홈바에 넣었어요`);if(S.tab==='bar')render();};
+  wrap.querySelector('#srBack').onclick=()=>{srHome(s);sh.scrollTop=0;};
+  sh.scrollTop=0;
+}
+
 function openSettings(){
   openSheet(`<h2 style="margin-top:4px">설정</h2><div class="card">
   <div class="field" style="margin-top:0"><label>가격 단위</label><div class="seg" id="cur"><button type="button" data-c="KRW" class="${settings.currency==='KRW'?'on':''}">원 (₩)</button><button type="button" data-c="USD" class="${settings.currency==='USD'?'on':''}">달러 ($)</button></div></div>
@@ -1843,6 +2290,7 @@ let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('sh
 /* ---------- 시작 ---------- */
 document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b&&!b.closest('.sheet')){e.preventDefault();if(b.dataset.go==='pick'&&S.tab==='pick')S.quiz=null;go(b.dataset.go);}});
 $('#settingsBtn').onclick=openSettings;
+$('#searchBtn').onclick=openSearch;
 function wineBottleSVG(){const id='wb'+(++BID);return `<svg width="46" height="130" viewBox="0 0 60 170" aria-hidden="true"><defs><linearGradient id="${id}g" x1="0" x2="1"><stop offset="0" stop-color="#2E000B"/><stop offset=".25" stop-color="#7A0424"/><stop offset=".38" stop-color="#E0315F"/><stop offset=".5" stop-color="#B30737"/><stop offset="1" stop-color="#2E000B"/></linearGradient><linearGradient id="${id}f" x1="0" x2="1"><stop offset="0" stop-color="#5E4416"/><stop offset=".3" stop-color="#C9A04E"/><stop offset=".45" stop-color="#F8E6B4"/><stop offset=".65" stop-color="#B8913E"/><stop offset="1" stop-color="#4E3810"/></linearGradient></defs><path d="M24 12H36V50C36 58 52 62 52 77V160Q52 166 46 166H14Q8 166 8 160V77C8 62 24 58 24 50Z" fill="url(#${id}g)"/><rect x="22.6" y="3" width="14.8" height="36" rx="2" fill="url(#${id}f)"/><path d="M8.3 92Q30 97 51.7 92V140Q30 145 8.3 140Z" fill="#FBF5EA"/><text x="30" y="122" text-anchor="middle" font-size="9" font-weight="300" letter-spacing=".5" fill="#B30737" font-family="Noto Sans KR,sans-serif">Wine<tspan fill="#B88A3E">Pick</tspan></text><rect x="13" y="82" width="2.6" height="76" rx="1.3" fill="#fff" opacity=".35"/></svg>`;}
 function askWine(){
   const o=document.createElement('div');o.className='celebrate';
