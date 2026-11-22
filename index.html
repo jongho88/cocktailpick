@@ -85,21 +85,12 @@ p{margin:0 0 10px}
 .ljump button{flex:none;border:1px solid rgba(200,232,156,.35);background:rgba(255,255,255,.06);color:#C8E89C;border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:600}
 .lart{background:var(--mint);padding:22px 18px;min-height:150px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
 .lbody{padding:20px 20px 6px}
-.lart.line{padding:16px 10px 10px;cursor:pointer;position:relative}
-.lart.line::after{content:"↻";position:absolute;right:12px;bottom:8px;font-size:13px;color:#7D8A6E;opacity:0;transition:opacity .3s 2.8s}
-.lart.line.on::after{opacity:.7}
+.lart.line{padding:16px 10px 10px;position:relative}
 .lsvg{width:100%;max-width:440px;height:auto;display:block;overflow:visible;stroke:#3F7A14;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .lsvg .ld{stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0}
-.lart.on .ld{animation:ldraw .9s cubic-bezier(.45,.05,.3,1) var(--d,0s) forwards}
-@keyframes ldraw{0%{opacity:1;stroke-dashoffset:1}100%{opacity:1;stroke-dashoffset:0}}
 .lsvg .ldf{stroke:none;opacity:0}
-.lart.on .ldf{animation:lfill .7s ease var(--d,0s) forwards}
-@keyframes lfill{from{opacity:0}to{opacity:var(--fo,.55)}}
 .lsvg .ldt{stroke:none;fill:#2E5A14;font-weight:700;font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;opacity:0}
 .lsvg .lden{fill:#7D8A6E;font-weight:500;font-style:italic;font-size:10px}
-.lart.on .ldt{animation:ltext .6s ease var(--d,0s) forwards}
-@keyframes ltext{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.lart.on .ld,.lart.on .ldf,.lart.on .ldt{animation-duration:.01s;animation-delay:0s!important}}
 .lbody .kicker{font-size:13px;font-weight:700;color:var(--pri3);letter-spacing:.02em}
 .tip{background:#FFF7E8;border-radius:14px;padding:12px 14px;margin:12px 0;font-size:15px}
 .tip b{color:var(--gold)}
@@ -1312,23 +1303,46 @@ const LA={
    +at(260,6,1.45,I.coupe('#C4741F'))+TX(260,112,'업','Up'))
  ]
 };
-function playLine(el){
-  el.classList.remove('on');void el.offsetWidth;
-  const items=el.querySelectorAll('.ld,.ldf,.ldt');const n=el.querySelectorAll('.ld').length||1;
-  const step=Math.min(.11,2.6/n);let t=0;
-  items.forEach(x=>{if(x.classList.contains('ld')){x.style.setProperty('--d',t.toFixed(2)+'s');t+=step;}else x.style.setProperty('--d',(t+.25).toFixed(2)+'s');});
-  el.classList.add('on');
+/* 스크롤에 맞춰 그려지는 라인 드로잉
+   그림 윗부분이 화면 아래 88% 지점에 들어오면 그리기 시작해, 화면 40% 지점까지 올라오면 다 그려져요.
+   스크롤을 멈추면 그림도 멈추고, 위로 올리면 다시 지워져요. */
+let LARTS=[],LRAF=0,LREDUCE=false;
+try{LREDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+function prepLine(el){
+  const items=[...el.querySelectorAll('.ld,.ldf,.ldt')];const n=el.querySelectorAll('.ld').length||1;
+  const win=Math.min(.35,Math.max(.12,3/n));let k=0;const span=1-win-.08;
+  const list=items.map(x=>{const type=x.classList.contains('ld')?0:x.classList.contains('ldf')?1:2;
+    let st;if(type===0){st=n>1?k/(n-1)*span:0;k++;}else st=Math.min(.92,(k?(k-1)/(Math.max(1,n-1))*span:0)+win*.6);
+    return {x,type,st,w:type===0?win:.08};});
+  return {el,list,cur:0,tgt:0,last:-1};
 }
-let LIO=null;
+function drawLine(A){
+  const p=A.cur;if(Math.abs(p-A.last)<.002)return;A.last=p;
+  for(const it of A.list){const l=Math.max(0,Math.min(1,(p-it.st)/it.w));const s=it.x.style;
+    if(it.type===0){s.strokeDashoffset=(1-l).toFixed(3);s.opacity=l>0?1:0;}
+    else if(it.type===1){s.opacity=(l*.55).toFixed(3);}
+    else{s.opacity=l.toFixed(3);s.transform=`translateY(${((1-l)*4).toFixed(1)}px)`;}}
+}
+function lineTick(){
+  LRAF=0;const vh=window.innerHeight||800;let moving=false;
+  for(const A of LARTS){
+    if(!A.el.isConnected)continue;
+    const r=A.el.getBoundingClientRect();
+    A.tgt=LREDUCE?1:Math.max(0,Math.min(1,(vh*.88-r.top)/(vh*.48)));
+    const d=A.tgt-A.cur;
+    if(Math.abs(d)>.002){const m=Math.min(.013,Math.max(.004,Math.abs(d)*.08));A.cur+=d>0?m:-m;if((d>0&&A.cur>A.tgt)||(d<0&&A.cur<A.tgt))A.cur=A.tgt;moving=true;}
+    if(r.bottom>-50&&r.top<vh+50)drawLine(A);
+  }
+  if(moving)LRAF=requestAnimationFrame(lineTick);
+}
+function lineKick(){if(!LRAF&&LARTS.length)LRAF=requestAnimationFrame(lineTick);}
+window.addEventListener('scroll',lineKick,{passive:true});
+window.addEventListener('resize',lineKick);
 function bindLineArt(){
-  const arts=view.querySelectorAll('.lart.line');
-  arts.forEach(a=>a.onclick=()=>playLine(a));
-  if(LIO)LIO.disconnect();
-  if(!('IntersectionObserver' in window)){arts.forEach(playLine);return;}
-  LIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){LIO.unobserve(e.target);playLine(e.target);}}),{threshold:.35});
-  arts.forEach(a=>LIO.observe(a));
+  LARTS=[...view.querySelectorAll('.lart.line')].map(prepLine);
+  LARTS.forEach(drawLine);
+  setTimeout(lineKick,120);
 }
-
 let LQ=null;
 function renderLearn(){
   const lv=LEVELS.find(l=>l.id===S.level)||LEVELS[0];const badges=store.get('badges',{});
@@ -1337,7 +1351,7 @@ function renderLearn(){
   <div class="lvtabs">${LEVELS.map(l=>`<button data-lv="${l.id}" class="${l.id===lv.id?'on':''}">${badges[l.id]?'<i class="lvok">✓</i>':''}${l.name}<small>${l.en}</small></button>`).join('')}</div>
   <div class="ljump">${lv.cards.map((c,i)=>`<button data-j="${i}">${i+1}. ${esc(c.k.replace(/^\d+\.\s*/,'').split(' · ')[0])}</button>`).join('')}<button data-j="quiz">🎓 퀴즈</button></div>
   ${lv.cards.map((c,i)=>`<div class="lcard" id="lc${i}">
-    ${LA[lv.id]&&LA[lv.id][i]?`<div class="lart line" title="눌러서 다시 보기">${LA[lv.id][i]()}</div>`:`<div class="lart">${c.art()}</div>`}
+    ${LA[lv.id]&&LA[lv.id][i]?`<div class="lart line">${LA[lv.id][i]()}</div>`:`<div class="lart">${c.art()}</div>`}
     <div class="lbody"><div class="kicker">${c.k}</div><h2 style="margin-top:4px">${c.t}</h2>${c.b}<div class="tip">💡 ${c.tip}</div></div>
   </div>`).join('')}
   <div class="lcard quizbox" id="lcquiz"></div>
