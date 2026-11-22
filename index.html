@@ -1157,7 +1157,7 @@ const TABS=['home','learn','pick','bar','log'];
 function render(){try{renderInner();}catch(e){console.error(e);view.innerHTML='<div class="card"><p>화면을 그리는 중 문제가 생겼어요. 새로고침해 주세요.</p></div>';}}
 function renderInner(){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.go===S.tab));
-  ({home:renderHome,learn:renderLearn,pick:renderPick,bar:renderBar,log:renderLog,settings:renderSettings})[S.tab]();
+  ({home:renderHome,learn:renderLearn,pick:renderPick,bar:renderBar,log:renderLog})[S.tab]();
   window.scrollTo(0,0);
 }
 function go(tab){S.tab=tab;try{if(location.hash.slice(1)!==tab)history.replaceState(null,'','#'+tab);}catch(e){}render();}
@@ -1689,9 +1689,8 @@ function openRecord(id,styleId){
   });
 }
 
-function openSettings(){if(S.tab!=='settings'){S.prev=S.tab;}S.tab='settings';render();}
-function renderSettings(){
-  view.innerHTML=`<button class="back" id="sBack"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg>돌아가기</button><h1 class="thin" style="margin-top:6px">설정</h1><div class="card">
+function openSettings(){
+  openSheet(`<h2 style="margin-top:4px">설정</h2><div class="card">
   <div class="field" style="margin-top:0"><label>가격 단위</label><div class="seg" id="cur"><button type="button" data-c="KRW" class="${settings.currency==='KRW'?'on':''}">원 (₩)</button><button type="button" data-c="USD" class="${settings.currency==='USD'?'on':''}">달러 ($)</button></div></div>
   <div class="field" style="margin-bottom:0"><label>레시피 용량 단위</label><div class="seg" id="unit"><button type="button" data-u="ml" class="${settings.unit!=='oz'?'on':''}">ml</button><button type="button" data-u="oz" class="${settings.unit==='oz'?'on':''}">oz (온스)</button></div></div></div>
   <div class="card" style="margin:16px 0"><h3>친구에게 알려 주기</h3><p class="small muted">이 앱 주소를 복사해서 카톡이나 문자로 보내세요. 친구 기록은 친구 폰에만 저장돼요.</p><button class="btn soft block" id="share">주소 복사하기</button></div>
@@ -1702,9 +1701,8 @@ function renderSettings(){
   </div>
   <div class="card"><h3>홈 화면에 추가하기</h3><p class="small muted" style="margin:0">아이콘이 생겨서 앱처럼 바로 열 수 있어요.<br>· 아이폰: 사파리 아래 공유 버튼 → <b>홈 화면에 추가</b><br>· 안드로이드: 크롬 오른쪽 위 ⋮ → <b>홈 화면에 추가</b></p></div>
   <button class="btn danger block" id="wipe" style="margin-top:6px">모든 기록 지우기</button>
-  <p class="foot" style="margin-bottom:0">CocktailPick</p><p style="text-align:center;margin:2px 0 8px"><a class="wp-link" href="${WINEPICK_URL}" target="_blank" rel="noopener">🍷 WinePick ↗</a></p>`;
-  const s=view;const back=()=>go(S.prev&&S.prev!=='settings'?S.prev:'home');
-  s.querySelector('#sBack').onclick=back;
+  <p class="foot" style="margin-bottom:0;color:#8C9C7A">CocktailPick</p><p style="text-align:center;margin:2px 0 8px"><a class="wp-link" href="${WINEPICK_URL}" target="_blank" rel="noopener">🍷 WinePick ↗</a></p>`,s=>{
+  const back=()=>{closeSheet();render();};
   s.querySelectorAll('#cur button').forEach(b=>b.onclick=()=>{settings.currency=b.dataset.c;store.set('settings',settings);s.querySelectorAll('#cur button').forEach(x=>x.classList.toggle('on',x===b));toast('가격 단위를 바꿨어요');});
   s.querySelectorAll('#unit button').forEach(b=>b.onclick=()=>{settings.unit=b.dataset.u;store.set('settings',settings);s.querySelectorAll('#unit button').forEach(x=>x.classList.toggle('on',x===b));toast('용량 단위를 바꿨어요');});
   s.querySelector('#share').onclick=async()=>{
@@ -1732,6 +1730,7 @@ function renderSettings(){
   w.onclick=()=>{if(!armed){armed=true;w.textContent='정말 모두 지울까요? 한 번 더 누르세요';return;}
     store.get('records',[]).forEach(r=>{if(r.photo)PDB.del(r.photo);});
     store.set('records',[]);store.set('lastResult',null);store.set('inv',[]);toast('모두 지웠어요');back();};
+});
 }
 async function copyText(t,msg){
   try{await navigator.clipboard.writeText(t);toast(msg);return;}catch(e){}
