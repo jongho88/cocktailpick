@@ -97,7 +97,8 @@ p{margin:0 0 10px}
 @keyframes lfill{from{opacity:0}to{opacity:.55}}
 .lart.on .ldt{animation:ltext .5s ease var(--d,0s) forwards}
 @keyframes ltext{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.lart.line .replay{position:absolute;right:10px;top:10px;z-index:1;border:1px solid rgba(63,122,20,.3);background:rgba(255,255,255,.55);color:#3F7A14;border-radius:999px;font-size:12px;font-weight:600;padding:5px 11px}
+.lart.line .replay svg{width:16px!important;height:16px!important;max-width:none;stroke-width:2.2;fill:none;animation:none}
+.lart.line .replay{position:absolute;right:10px;top:10px;z-index:1;border:1px solid rgba(63,122,20,.3);background:rgba(255,255,255,.55);color:#3F7A14;border-radius:999px;font-size:12px;font-weight:600;padding:5px 11px;width:32px;height:32px;padding:0;display:grid;place-items:center}
 .lart.line{padding-top:38px}
 .lbody .kicker{font-size:13px;font-weight:700;color:var(--pri3);letter-spacing:.02em}
 .tip{background:#FFF7E8;border-radius:14px;padding:12px 14px;margin:12px 0;font-size:15px}
@@ -520,7 +521,7 @@ function defaultCurrency(){
 let settings=Object.assign({currency:defaultCurrency(),unit:'ml'},store.get('settings',null)||{});
 
 /* 연결 주소 (Bitly) */
-const APP_VERSION='1.1.1',APP_DATE='2026.11.22';
+const APP_VERSION='1.1.2',APP_DATE='2026.11.22';
 const WINEPICK_URL='https://bit.ly/winepick';
 const SHARE_URL='https://bit.ly/cocktailpick'; // 친구에게 보내는 주소
 const QR_SVG="<svg viewBox=\"-2 -2 29 29\" width=\"100%\" height=\"100%\" shape-rendering=\"crispEdges\" aria-label=\"CocktailPick QR 코드\"><rect x=\"-2\" y=\"-2\" width=\"29\" height=\"29\" fill=\"#fff\"/><path d=\"M0 0h7v1h-7zM8 0h1v1h-1zM11 0h4v1h-4zM18 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h2v1h-2zM14 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM10 2h1v1h-1zM12 2h3v1h-3zM18 2h1v1h-1zM20 2h3v1h-3zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM12 3h2v1h-2zM15 3h2v1h-2zM18 3h1v1h-1zM20 3h3v1h-3zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h1v1h-1zM11 4h1v1h-1zM13 4h2v1h-2zM16 4h1v1h-1zM18 4h1v1h-1zM20 4h3v1h-3zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM10 5h1v1h-1zM12 5h2v1h-2zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h7v1h-7zM8 7h1v1h-1zM10 7h2v1h-2zM13 7h1v1h-1zM15 7h1v1h-1zM0 8h2v1h-2zM3 8h2v1h-2zM6 8h1v1h-1zM9 8h4v1h-4zM14 8h3v1h-3zM18 8h1v1h-1zM24 8h1v1h-1zM1 9h2v1h-2zM4 9h1v1h-1zM9 9h1v1h-1zM12 9h1v1h-1zM15 9h1v1h-1zM19 9h5v1h-5zM0 10h2v1h-2zM3 10h1v1h-1zM5 10h2v1h-2zM8 10h1v1h-1zM10 10h2v1h-2zM15 10h3v1h-3zM21 10h1v1h-1zM24 10h1v1h-1zM1 11h2v1h-2zM4 11h1v1h-1zM7 11h1v1h-1zM9 11h2v1h-2zM12 11h1v1h-1zM15 11h1v1h-1zM18 11h1v1h-1zM21 11h4v1h-4zM0 12h1v1h-1zM4 12h1v1h-1zM6 12h2v1h-2zM9 12h1v1h-1zM12 12h1v1h-1zM16 12h1v1h-1zM18 12h2v1h-2zM24 12h1v1h-1zM0 13h3v1h-3zM4 13h1v1h-1zM7 13h1v1h-1zM11 13h1v1h-1zM13 13h3v1h-3zM17 13h1v1h-1zM20 13h1v1h-1zM23 13h1v1h-1zM0 14h2v1h-2zM3 14h4v1h-4zM9 14h2v1h-2zM13 14h1v1h-1zM15 14h1v1h-1zM17 14h2v1h-2zM20 14h5v1h-5zM0 15h1v1h-1zM2 15h1v1h-1zM4 15h2v1h-2zM8 15h1v1h-1zM11 15h2v1h-2zM16 15h1v1h-1zM18 15h2v1h-2zM21 15h2v1h-2zM24 15h1v1h-1zM0 16h4v1h-4zM5 16h2v1h-2zM8 16h2v1h-2zM11 16h3v1h-3zM16 16h5v1h-5zM22 16h2v1h-2zM8 17h1v1h-1zM13 17h1v1h-1zM15 17h2v1h-2zM20 17h1v1h-1zM22 17h2v1h-2zM0 18h7v1h-7zM9 18h1v1h-1zM11 18h1v1h-1zM13 18h2v1h-2zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM24 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM10 19h1v1h-1zM12 19h2v1h-2zM15 19h2v1h-2zM20 19h1v1h-1zM23 19h1v1h-1zM0 20h1v1h-1zM2 20h3v1h-3zM6 20h1v1h-1zM8 20h1v1h-1zM11 20h2v1h-2zM14 20h7v1h-7zM0 21h1v1h-1zM2 21h3v1h-3zM6 21h1v1h-1zM8 21h1v1h-1zM10 21h2v1h-2zM13 21h2v1h-2zM16 21h1v1h-1zM18 21h1v1h-1zM23 21h2v1h-2zM0 22h1v1h-1zM2 22h3v1h-3zM6 22h1v1h-1zM11 22h2v1h-2zM16 22h2v1h-2zM20 22h5v1h-5zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM11 23h2v1h-2zM19 23h2v1h-2zM22 23h3v1h-3zM0 24h7v1h-7zM8 24h4v1h-4zM16 24h2v1h-2zM21 24h1v1h-1zM24 24h1v1h-1z\" fill=\"#14200A\"/></svg>";
@@ -1712,7 +1713,7 @@ function renderLearn(){
   <div class="lvtabs">${LEVELS.map(l=>`<button data-lv="${l.id}" class="${l.id===lv.id?'on':''}">${badges[l.id]?'<i class="lvok">✓</i>':''}${l.name}<small>${l.en}</small></button>`).join('')}</div>
   <div class="ljump">${lv.cards.map((c,i)=>`<button data-j="${i}">${i+1}. ${esc(c.k.replace(/^\d+\.\s*/,'').split(' · ')[0])}</button>`).join('')}<button data-j="quiz">🎓 퀴즈</button></div>
   ${lv.cards.map((c,i)=>`<div class="lcard" id="lc${i}">
-    ${LA[lv.id]&&LA[lv.id][i]?`<div class="lart line"><button class="replay" type="button">↻ 다시 보기</button>${LA[lv.id][i]()}</div>`:`<div class="lart">${c.art()}</div>`}
+    ${LA[lv.id]&&LA[lv.id][i]?`<div class="lart line"><button class="replay" type="button" aria-label="다시 보기" title="다시 보기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button>${LA[lv.id][i]()}</div>`:`<div class="lart">${c.art()}</div>`}
     <div class="lbody"><div class="kicker">${c.k}</div><h2 style="margin-top:4px">${c.t}</h2>${c.b}<div class="tip">💡 ${c.tip}</div></div>
   </div>`).join('')}
   <div class="lcard quizbox" id="lcquiz"></div>
