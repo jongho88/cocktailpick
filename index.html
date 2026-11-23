@@ -373,6 +373,12 @@ h1.thin{font-weight:300;font-size:22px;letter-spacing:.01em;margin:16px 0 2px}
 .crop-zoom{display:flex;align-items:center;gap:10px;width:min(78vw,340px)}
 .crop-zoom input{flex:1;accent-color:#8CC63F}
 .crop-zoom button{width:36px;height:36px;border-radius:50%;border:1px solid rgba(216,240,176,.4);background:rgba(255,255,255,.06);color:#D8F0B0;font-size:20px;line-height:1}
+.pp-img{display:block;width:100%;height:100%;border:0;padding:0;margin:0;background:none;position:relative;cursor:pointer}
+.pp-img img{display:block;width:100%;height:100%;object-fit:cover}
+.pp-pen{position:absolute;right:6px;bottom:6px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.88);color:#444;display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.25);pointer-events:none}
+.crop-more{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:4px;color:rgba(255,255,255,.45)}
+.crop-more button{border:0;background:none;color:rgba(255,255,255,.85);font-size:14px;font-weight:600;padding:8px 6px;text-decoration:underline;text-underline-offset:3px}
+.crop-more #cDel{color:#FFB3B3}
 .crop-btns{display:flex;gap:8px;width:min(86vw,360px)}.crop-btns .btn{flex:1;min-height:46px;padding:10px}
 .crop-btns .btn.ghost{color:#D8F0B0;border-color:rgba(216,240,176,.5)}
 .pp-btns button{font-size:14px}
@@ -521,7 +527,7 @@ function defaultCurrency(){
 let settings=Object.assign({currency:defaultCurrency(),unit:'ml'},store.get('settings',null)||{});
 
 /* 연결 주소 (Bitly) */
-const APP_VERSION='1.1.2',APP_DATE='2026.11.22';
+const APP_VERSION='1.1.3',APP_DATE='2026.11.22';
 const WINEPICK_URL='https://bit.ly/winepick';
 const SHARE_URL='https://bit.ly/cocktailpick'; // 친구에게 보내는 주소
 const QR_SVG="<svg viewBox=\"-2 -2 29 29\" width=\"100%\" height=\"100%\" shape-rendering=\"crispEdges\" aria-label=\"CocktailPick QR 코드\"><rect x=\"-2\" y=\"-2\" width=\"29\" height=\"29\" fill=\"#fff\"/><path d=\"M0 0h7v1h-7zM8 0h1v1h-1zM11 0h4v1h-4zM18 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h2v1h-2zM14 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM10 2h1v1h-1zM12 2h3v1h-3zM18 2h1v1h-1zM20 2h3v1h-3zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM12 3h2v1h-2zM15 3h2v1h-2zM18 3h1v1h-1zM20 3h3v1h-3zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h1v1h-1zM11 4h1v1h-1zM13 4h2v1h-2zM16 4h1v1h-1zM18 4h1v1h-1zM20 4h3v1h-3zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM10 5h1v1h-1zM12 5h2v1h-2zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h7v1h-7zM8 7h1v1h-1zM10 7h2v1h-2zM13 7h1v1h-1zM15 7h1v1h-1zM0 8h2v1h-2zM3 8h2v1h-2zM6 8h1v1h-1zM9 8h4v1h-4zM14 8h3v1h-3zM18 8h1v1h-1zM24 8h1v1h-1zM1 9h2v1h-2zM4 9h1v1h-1zM9 9h1v1h-1zM12 9h1v1h-1zM15 9h1v1h-1zM19 9h5v1h-5zM0 10h2v1h-2zM3 10h1v1h-1zM5 10h2v1h-2zM8 10h1v1h-1zM10 10h2v1h-2zM15 10h3v1h-3zM21 10h1v1h-1zM24 10h1v1h-1zM1 11h2v1h-2zM4 11h1v1h-1zM7 11h1v1h-1zM9 11h2v1h-2zM12 11h1v1h-1zM15 11h1v1h-1zM18 11h1v1h-1zM21 11h4v1h-4zM0 12h1v1h-1zM4 12h1v1h-1zM6 12h2v1h-2zM9 12h1v1h-1zM12 12h1v1h-1zM16 12h1v1h-1zM18 12h2v1h-2zM24 12h1v1h-1zM0 13h3v1h-3zM4 13h1v1h-1zM7 13h1v1h-1zM11 13h1v1h-1zM13 13h3v1h-3zM17 13h1v1h-1zM20 13h1v1h-1zM23 13h1v1h-1zM0 14h2v1h-2zM3 14h4v1h-4zM9 14h2v1h-2zM13 14h1v1h-1zM15 14h1v1h-1zM17 14h2v1h-2zM20 14h5v1h-5zM0 15h1v1h-1zM2 15h1v1h-1zM4 15h2v1h-2zM8 15h1v1h-1zM11 15h2v1h-2zM16 15h1v1h-1zM18 15h2v1h-2zM21 15h2v1h-2zM24 15h1v1h-1zM0 16h4v1h-4zM5 16h2v1h-2zM8 16h2v1h-2zM11 16h3v1h-3zM16 16h5v1h-5zM22 16h2v1h-2zM8 17h1v1h-1zM13 17h1v1h-1zM15 17h2v1h-2zM20 17h1v1h-1zM22 17h2v1h-2zM0 18h7v1h-7zM9 18h1v1h-1zM11 18h1v1h-1zM13 18h2v1h-2zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM24 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM10 19h1v1h-1zM12 19h2v1h-2zM15 19h2v1h-2zM20 19h1v1h-1zM23 19h1v1h-1zM0 20h1v1h-1zM2 20h3v1h-3zM6 20h1v1h-1zM8 20h1v1h-1zM11 20h2v1h-2zM14 20h7v1h-7zM0 21h1v1h-1zM2 21h3v1h-3zM6 21h1v1h-1zM8 21h1v1h-1zM10 21h2v1h-2zM13 21h2v1h-2zM16 21h1v1h-1zM18 21h1v1h-1zM23 21h2v1h-2zM0 22h1v1h-1zM2 22h3v1h-3zM6 22h1v1h-1zM11 22h2v1h-2zM16 22h2v1h-2zM20 22h5v1h-5zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM11 23h2v1h-2zM19 23h2v1h-2zM22 23h3v1h-3zM0 24h7v1h-7zM8 24h4v1h-4zM16 24h2v1h-2zM21 24h1v1h-1zM24 24h1v1h-1z\" fill=\"#14200A\"/></svg>";
@@ -1909,13 +1915,13 @@ const PDB={db:null,
   async del(k){delete memPhotos[k];const db=await this.open();if(!db)return;try{db.transaction('photos','readwrite').objectStore('photos').delete(k);}catch(e){}}
 };
 /* ---------- 사진 위치·크기 조정 ---------- */
-function openCropper(src){
+function openCropper(src,opt){opt=opt||{};
   return new Promise(resolve=>{
     const o=document.createElement('div');o.className='crop-ov';
     o.innerHTML=`<div class="crop-top"><b>사진 위치 맞추기</b><span>두 손가락으로 확대·축소하고, 끌어서 위치를 옮겨요</span></div>
     <div class="crop-stage" id="cStage"><img id="cImg" alt="" draggable="false"><div class="crop-grid"></div></div>
     <div class="crop-zoom"><button type="button" id="cOut" aria-label="축소">−</button><input type="range" id="cRange" min="0" max="100" value="0" aria-label="확대 정도"><button type="button" id="cIn" aria-label="확대">+</button></div>
-    <div class="crop-btns"><button type="button" class="btn ghost" id="cCancel">취소</button><button type="button" class="btn ghost" id="cReset">원래대로</button><button type="button" class="btn" id="cOk">사용하기</button></div>`;
+    <div class="crop-btns"><button type="button" class="btn ghost" id="cCancel">취소</button><button type="button" class="btn ghost" id="cReset">원래대로</button><button type="button" class="btn" id="cOk">사용하기</button></div>${opt.edit?`<div class="crop-more"><button type="button" id="cChange">다른 사진으로 바꾸기</button><span>·</span><button type="button" id="cDel">사진 지우기</button></div>`:''}`;
     document.body.appendChild(o);
     const st=o.querySelector('#cStage'),im=o.querySelector('#cImg'),rg=o.querySelector('#cRange');
     let W=0,H=0,iw=0,ih=0,minS=1,maxS=4,s=1,tx=0,ty=0;
@@ -1944,6 +1950,8 @@ function openCropper(src){
     o.querySelector('#cReset').onclick=fit;
     function close(v){o.remove();resolve(v);}
     o.querySelector('#cCancel').onclick=()=>close(null);
+    if(opt.edit){o.querySelector('#cChange').onclick=()=>{close(null);opt.onChange&&opt.onChange();};
+      const dl=o.querySelector('#cDel');let armed=false;dl.onclick=()=>{if(!armed){armed=true;dl.textContent='한 번 더 누르면 지워요';setTimeout(()=>{armed=false;dl.textContent='사진 지우기';},2500);return;}close(null);opt.onDelete&&opt.onDelete();};}
     o.querySelector('#cOk').onclick=()=>{
       try{const OW=600,OH=800,c=document.createElement('canvas');c.width=OW;c.height=OH;const g=c.getContext('2d');
         g.fillStyle='#fff';g.fillRect(0,0,OW,OH);g.drawImage(im,-tx/s,-ty/s,W/s,H/s,0,0,OW,OH);close(c.toDataURL('image/jpeg',.8));}
@@ -2084,10 +2092,10 @@ function openRecord(id,styleId){
     let cur=d.cur||settings.currency;let newPhoto=null,removePhoto=false;
     const pp=s.querySelector('#pp'),fp=s.querySelector('#fPhoto');
     let curSrc=null;
-    const drawPick=src=>{curSrc=src;pp.innerHTML=src?`<img src="${src}" alt="칵테일 사진"><div class="pp-btns"><button type="button" id="ppEdit">조정</button><button type="button" id="ppChange">바꾸기</button><button type="button" id="ppDel">지우기</button></div>`:`<button type="button" class="pp-empty" id="ppAdd"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>사진 넣기</span><small>찍기 · 앨범</small></button>`;
+    const drawPick=src=>{curSrc=src;pp.innerHTML=src?`<button type="button" class="pp-img" id="ppEdit" aria-label="사진 조정·바꾸기·지우기"><img src="${src}" alt="칵테일 사진"><span class="pp-pen"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></span></button>`:`<button type="button" class="pp-empty" id="ppAdd"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>사진 넣기</span><small>찍기 · 앨범</small></button>`;
       const a=pp.querySelector('#ppAdd'),c=pp.querySelector('#ppChange'),x=pp.querySelector('#ppDel');
       if(a)a.onclick=()=>fp.click();if(c)c.onclick=()=>fp.click();
-      const ed=pp.querySelector('#ppEdit');if(ed)ed.onclick=async()=>{const out=await openCropper(curSrc);if(out){newPhoto=out;removePhoto=false;drawPick(out);}};
+      const ed=pp.querySelector('#ppEdit');if(ed)ed.onclick=async()=>{const out=await openCropper(curSrc,{edit:true,onChange:()=>fp.click(),onDelete:()=>{newPhoto=null;removePhoto=true;drawPick(null);toast('사진을 지웠어요');}});if(out){newPhoto=out;removePhoto=false;drawPick(out);}};
       if(x)x.onclick=()=>{newPhoto=null;removePhoto=true;drawPick(null);};};
     drawPick(null);
     if(d.photo)PDB.get(d.photo).then(src=>{if(src&&!newPhoto&&!removePhoto)drawPick(src);});
